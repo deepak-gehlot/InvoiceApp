@@ -1,0 +1,137 @@
+<resources>
+    <string name="app_name">InvoiceApp</string>
+
+    <!--get started screen started-->
+    <string name="title">Invoice Simple</string>
+    <string name="title_desc">Create professional invoices in seconds!</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="already_account">Already have an account?  <b>Login</b></string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--get started screen ended-->
+
+
+    <!--login fragement start-->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="forgot_password">FORGOT PASSWORD</string>
+    <!--login fragement end-->
+
+    <!--business details start-->
+    <string name="business_details">BusinessDetails</string>
+    <string name="business_details_desc">Appears on all invoices. Can be edited any time.</string>
+    <string name="business_name">Business Name</string>
+    <string name="phone">Phone</string>
+    <string name="email_hint">Email</string>
+    <string name="address_1">Address Line 1</string>
+    <string name="address_2">Address Line 2</string>
+    <string name="address_3">Address Line 3</string>
+    <string name="next">NEXT</string>
+    <string name="finish">FINISH</string>
+    <!--business details end-->
+
+    <!--business logo start-->
+    <string name="business_logo">Business Logo</string>
+    <string name="businesss_logo_desc">Appears on all invoices. Can be edited any time.</string>
+    <string name="choose_image">CHOOSE IMAGE</string>
+    <!--business logo end-->
+
+    <!--business industry start-->
+    <string name="business_industry">Business Industry</string>
+    <string name="business_industry_desc">What industry do you operate in?</string>
+    <string name="wholesale">Wholesale</string>
+    <string name="heacy_construction">Heavy Construction or Farming Equipment</string>
+    <string name="construction">Construction</string>
+    <string name="handyman">Handyman, Plumbing</string>
+    <string name="electrician">Electrician</string>
+    <string name="it">It, Internet and Computing</string>
+    <string name="catering">Catering</string>
+    <string name="cleaning">Cleaning</string>
+    <string name="landscaping">Landscaping, Tree Removal</string>
+    <string name="lawn_care">Lawn Care</string>
+    <string name="roofing">Roofing, Tiling, Flooring</string>
+    <string name="cement">Cement</string>
+    <string name="security">Security</string>
+    <string name="audo_repair">Auto Repair</string>
+    <string name="education">Education</string>
+    <string name="delivery">Delivery</string>
+    <string name="healthcare">Healthcare</string>
+    <string name="creative_services">Healthcare</string>
+    <string name="design_freelancer">Design Freelancer</string>
+    <string name="transport">Transport</string>
+    <string name="event_entertainment">Events, Entertainment</string>
+    <string name="hvac">HVAC</string>
+    <string name="painting">Painting</string>
+    <string name="fitness_yoga">Fitness, Yoga</string>
+    <string name="other">Other</string>
+
+    <string-array name="industry_array">
+        <item>@string/wholesale</item>
+        <item>@string/heacy_construction</item>
+        <item>@string/construction</item>
+        <item>@string/handyman</item>
+        <item>@string/electrician</item>
+        <item>@string/it</item>
+        <item>@string/catering</item>
+        <item>@string/cleaning</item>
+        <item>@string/landscaping</item>
+        <item>@string/lawn_care</item>
+        <item>@string/roofing</item>
+        <item>@string/cement</item>
+        <item>@string/security</item>
+        <item>@string/audo_repair</item>
+        <item>@string/education</item>
+        <item>@string/delivery</item>
+        <item>@string/healthcare</item>
+        <item>@string/creative_services</item>
+        <item>@string/design_freelancer</item>
+        <item>@string/transport</item>
+        <item>@string/event_entertainment</item>
+        <item>@string/hvac</item>
+        <item>@string/painting</item>
+        <item>@string/fitness_yoga</item>
+        <item>@string/other</item>
+    </string-array>
+    <!--business industry end-->
+    <string name="all_set">All Set!</string>
+    <string name="all_set_desc">You are ready to create your first invoice.</string>
+    <string name="create_invoice">CREATE INVOICE</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <!--business final start-->
+
+    <!--navigation array start-->
+    <string name="invoices">Invoices</string>
+    <string name="estimates">Estimates</string>
+    <string name="reports">Reports</string>
+    <string name="my_items">My Items</string>
+    <string name="clients">Clients</string>
+    <string name="account">Account</string>
+    <string name="support">Support</string>
+    <string name="settings">Settings</string>
+    <string-array name="navigation_array">
+        <item>@string/invoices</item>
+        <item>@string/estimates</item>
+        <item>@string/reports</item>
+        <item>@string/my_items</item>
+        <item>@string/clients</item>
+        <item>@string/account</item>
+        <item>@string/support</item>
+        <item>@string/settings</item>
+    </string-array>
+    <!--navigation array end-->
+
+    <!--invoice main fragment start-->
+    <string name="all">ALL</string>
+    <string name="outstanding">OUTSTANDING</string>
+    <string name="paid">PAID</string>
+    <!--invoice main fragment end-->
+</resources>
