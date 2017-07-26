@@ -25,6 +25,14 @@
         <activity
             android:name=".view.activity.HomeActivity"
             android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.createinvoice.CreateInvoiceActivity"
+            android:label="@string/title_activity_create_invoice"
+            android:theme="@style/AppTheme"></activity>
+
+        <activity
+            android:name=".view.activity.createestimate.CreateEstimateActivity"
             android:theme="@style/AppTheme"></activity>
     </application>
 

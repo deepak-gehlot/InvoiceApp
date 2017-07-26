@@ -1,0 +1,52 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.invoiceapp.android.view.activity.createinvoice.CreateInvoiceActivity">
+    <item
+        android:id="@+id/action_textsms"
+        android:icon="@drawable/ic_textsms"
+        android:orderInCategory="100"
+        android:title="@string/action_email"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_mail"
+        android:icon="@drawable/ic_mail"
+        android:orderInCategory="100"
+        android:title="@string/action_email"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_email"
+        android:orderInCategory="100"
+        android:title="@string/action_email"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_openin"
+        android:orderInCategory="100"
+        android:title="@string/action_openin"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="100"
+        android:title="@string/action_share"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_print"
+        android:orderInCategory="100"
+        android:title="@string/action_print"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_delete"
+        android:orderInCategory="100"
+        android:title="@string/action_delete"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_mark_paid"
+        android:orderInCategory="100"
+        android:title="@string/action_markpaid"
+        app:showAsAction="never" />
+</menu>

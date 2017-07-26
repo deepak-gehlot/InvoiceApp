@@ -1,15 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.invoiceapp.android.view.fragment.detailsection.BusinessDetailsFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:fillViewport="true">
+        android:background="@color/white"
+        tools:context="com.invoiceapp.android.view.fragment.detailsection.BusinessDetailsFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +26,7 @@
                 android:gravity="center"
                 android:lines="1"
                 android:text="@string/business_industry"
-                android:textColor="@color/white"
+                android:textColor="@color/orange"
                 android:textSize="@dimen/text_large" />
 
             <com.invoiceapp.android.custom.CustomTextView
@@ -39,24 +36,29 @@
                 android:gravity="center"
                 android:lines="1"
                 android:text="@string/business_industry_desc"
-                android:textColor="@color/white"
+                android:textColor="@color/orange"
                 android:textSize="@dimen/text_small" />
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginBottom="50dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                app:cardCornerRadius="5dp">
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/orange"
+                app:cardCornerRadius="2dp"
+                app:cardPreventCornerOverlap="true">
 
                 <android.support.v7.widget.RecyclerView
+                    android:id="@+id/industryList"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp" />
             </android.support.v7.widget.CardView>
         </LinearLayout>
-    </ScrollView>
 
-</RelativeLayout>
+
+    </RelativeLayout>
+</layout>

@@ -23,21 +23,24 @@ public class NavigationAdapter extends RecyclerView.Adapter<NavigationAdapter.Vi
 
     private Context context;
     private String[] list;
+    private int icons[];
     private OnItemClickListener onItemClickListener;
 
-    public NavigationAdapter(Context context, String[] list) {
+    public NavigationAdapter(Context context, String[] list, int[] icons) {
         this.context = context;
         this.list = list;
+        this.icons = icons;
     }
 
     @Override
     public NavigationAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.navigatin_row, parent, true));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.navigatin_row, parent, false));
     }
 
     @Override
     public void onBindViewHolder(NavigationAdapter.ViewHolder holder, final int position) {
         holder.textView.setText(list[position]);
+        holder.textView.setCompoundDrawablesWithIntrinsicBounds(icons[position], 0, 0, 0);
 
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override

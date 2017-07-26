@@ -29,7 +29,7 @@ public class OutstandingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_all_invoice, container, false);
+        return inflater.inflate(R.layout.fragment_outstanding_invoice, container, false);
     }
 
 }

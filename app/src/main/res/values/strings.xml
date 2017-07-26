@@ -3,7 +3,7 @@
 
     <!--get started screen started-->
     <string name="title">Invoice Simple</string>
-    <string name="title_desc">Create professional invoices in seconds!</string>
+    <string name="title_desc">Create Professional Invoices In Seconds!</string>
     <string name="get_started">GET STARTED</string>
     <string name="already_account">Already have an account?  <b>Login</b></string>
     <string name="title_activity_login">LoginActivity</string>
@@ -105,7 +105,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_email">Email</string>
+    <string name="action_openin">Open in&#8230;</string>
+    <string name="action_share">Share</string>
+    <string name="action_print">Print</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_markpaid">Mark paid</string>
     <!--business final start-->
 
     <!--navigation array start-->
@@ -133,5 +138,7 @@
     <string name="all">ALL</string>
     <string name="outstanding">OUTSTANDING</string>
     <string name="paid">PAID</string>
+    <string name="title_activity_create_invoice">Invoice</string>
+    <string name="section_format">Hello World from section: %1$d</string>
     <!--invoice main fragment end-->
 </resources>

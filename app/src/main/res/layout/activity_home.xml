@@ -10,19 +10,106 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
-        <include
-            android:id="@+id/app_bar"
-            layout="@layout/app_bar_home"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottomLayout" />
+
+            <LinearLayout
+                android:id="@+id/bottomLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#a1a1a1"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:drawableTop="@drawable/invoice_icon"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:text="Invoices" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:drawableTop="@drawable/estimates_icon"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:text="Estimates" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:drawableTop="@drawable/reports_icon"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:text="Reports" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:drawableTop="@drawable/invoice_icon"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:text="More" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <ScrollView
-            android:layout_width="match_parent"
+            android:layout_width="220dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@color/white"
             android:fillViewport="true"
-            android:fitsSystemWindows="true">
+            android:fitsSystemWindows="true"
+            android:visibility="visible">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
