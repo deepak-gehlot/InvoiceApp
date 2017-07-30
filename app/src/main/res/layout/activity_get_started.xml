@@ -14,7 +14,7 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#222F3F"
         android:gravity="center"
         android:orientation="vertical"
         tools:context="com.invoiceapp.android.view.activity.GetStartedActivity">
@@ -32,7 +32,7 @@
             android:layout_marginTop="16dp"
             android:lines="1"
             android:text="@string/title"
-            android:textColor="@color/orange"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_large"
             android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
             android:layout_marginTop="10dp"
             android:lines="1"
             android:text="@string/title_desc"
-            android:textColor="@color/orange"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_small" />
 
 
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
-            android:background="@color/orange"
+            android:background="#EF7F1B"
             android:lines="1"
             android:onClick="@{()->activity.onGetStartedClick()}"
             android:paddingBottom="16dp"

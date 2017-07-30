@@ -8,7 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#222F3F"
         android:fillViewport="true">
 
         <LinearLayout
@@ -30,7 +30,7 @@
                 android:gravity="center"
                 android:lines="1"
                 android:text="@string/business_details"
-                android:textColor="@color/orange"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_large" />
 
             <com.invoiceapp.android.custom.CustomTextView
@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:lines="1"
                 android:text="@string/business_details_desc"
-                android:textColor="@color/orange"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_small" />
 
 
@@ -50,7 +50,6 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/orange"
                 app:cardCornerRadius="2dp">
 
                 <EditText
@@ -71,7 +70,6 @@
                 android:clipChildren="true"
                 android:clipToPadding="true"
                 android:padding="3dp"
-                app:cardBackgroundColor="@color/orange"
                 app:cardCornerRadius="2dp">
 
                 <LinearLayout
@@ -117,7 +115,6 @@
                 android:layout_marginTop="16dp"
                 android:clipChildren="true"
                 android:clipToPadding="true"
-                app:cardBackgroundColor="@color/orange"
                 app:cardPreventCornerOverlap="true"
                 app:cardCornerRadius="2dp">
 

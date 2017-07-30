@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#222F3F"
         tools:context="com.invoiceapp.android.view.activity.detailssection.DetailSectionMainActivity">
 
         <LinearLayout

@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#222F3F"
         tools:context="com.invoiceapp.android.view.fragment.detailsection.BusinessDetailsFragment">
 
         <LinearLayout
@@ -26,7 +26,7 @@
                 android:gravity="center"
                 android:lines="1"
                 android:text="@string/business_industry"
-                android:textColor="@color/orange"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_large" />
 
             <com.invoiceapp.android.custom.CustomTextView
@@ -36,7 +36,7 @@
                 android:gravity="center"
                 android:lines="1"
                 android:text="@string/business_industry_desc"
-                android:textColor="@color/orange"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_small" />
 
             <android.support.v7.widget.CardView
@@ -47,7 +47,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/orange"
                 app:cardCornerRadius="2dp"
                 app:cardPreventCornerOverlap="true">
 
