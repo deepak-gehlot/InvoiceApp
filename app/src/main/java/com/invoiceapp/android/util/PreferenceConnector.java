@@ -10,28 +10,15 @@ public class PreferenceConnector {
     public static final int MODE = Context.MODE_PRIVATE;
     public static final String USER_DATA = "user_data";
     public static final String USER_ID = "user_id";
-    public static final String IS_FROM_WIZARD = "is_from_wizard";
-    public static final String TYPE_OF_BIKE = "typeOfBike";
     public static final String LOGIN_EMAIL = "LOGIN_EMAIL";
     public static final String PROFILE_PIC = "profile_pic";
     public static final String FIRST_NAME = "first_name";
     public static final String LAST_NAME = "last_name";
-    public static final String FROM = "from";
-    public static final String DESCRIPTION = "description";
-    public static final String FACEBOOK_URL = "facebook_url";
-    public static final String TWITTER_URL = "twitter_url";
-    public static final String INSTAGRAM_URL = "instagram_url";
     public static final String GENDER = "gender";
     public static final String NUMBER = "number";
     public static final String DOB = "dob";
-    public static final String IS_LOGIN = "IS_LOGIN";
-    public static final String IS_RETAILER = "is_retailer";
     public static final String DEVICE_HEIGHT = "DEVICE_HEIGHT";
     public static final String DEVICE_WIDTH = "DEVICE_WIDTH";
-    public static final String NOTIFICATION_COUNT = "notification_count";
-    public static final String MSG_COUNT = "msg_count";
-    public static final String IS_IS_CHAT = "is_in_chat";
-    public static final String CHAT_WITH_ID = "chat_with_id";
     public static final String DEVICE_TOKEN = "device_token";
 
 

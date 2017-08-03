@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.IndustryListRowBinding;
+import com.invoiceapp.android.listener.OnItemClickListener;
 
 /**
  * Created by Vish on 7/19/2017.
@@ -19,6 +20,7 @@ public class IndustryListRowAdapter extends RecyclerView.Adapter<IndustryListRow
     private String[] items;
     private Context context;
     private int selectedPos = -1;
+    private OnItemClickListener listener;
 
     public IndustryListRowAdapter(Context context, String[] items) {
         this.context = context;
@@ -35,17 +37,20 @@ public class IndustryListRowAdapter extends RecyclerView.Adapter<IndustryListRow
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.industryListRowBinding.textView.setText(items[position]);
 
-        if (selectedPos == position){
+        if (selectedPos == position) {
             holder.industryListRowBinding.imageView.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             holder.industryListRowBinding.imageView.setVisibility(View.INVISIBLE);
         }
 
         holder.industryListRowBinding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                listener.onClick(position);
+                int oldPos = selectedPos;
                 selectedPos = position;
-                notifyDataSetChanged();
+                notifyItemChanged(oldPos);
+                notifyItemChanged(position);
             }
         });
     }
@@ -63,5 +68,9 @@ public class IndustryListRowAdapter extends RecyclerView.Adapter<IndustryListRow
             super(rowBinding.getRoot());
             this.industryListRowBinding = rowBinding;
         }
+    }
+
+    public void onItemClick(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

@@ -1,172 +1,196 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.invoiceapp.android.view.fragment.detailsection.BusinessDetailsFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+
+        <variable
+            name="model"
+            type="com.invoiceapp.android.view.model.BusinessDetailModel"/>
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#222F3F"
-        android:fillViewport="true">
+        tools:context="com.invoiceapp.android.view.fragment.detailsection.BusinessDetailsFragment">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#222F3F"
+            android:fillViewport="true">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:src="@mipmap/ic_launcher" />
-
-            <com.invoiceapp.android.custom.CustomTextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:lines="1"
-                android:text="@string/business_details"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_large" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <com.invoiceapp.android.custom.CustomTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:lines="1"
-                android:text="@string/business_details_desc"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_small" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:src="@mipmap/ic_launcher"/>
 
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="2dp">
-
-                <EditText
+                <com.invoiceapp.android.custom.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:background="#fff"
-                    android:hint="@string/business_name"
-                    android:padding="16dp" />
-            </android.support.v7.widget.CardView>
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="@string/business_details"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_large"/>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:clipChildren="true"
-                android:clipToPadding="true"
-                android:padding="3dp"
-                app:cardCornerRadius="2dp">
-
-                <LinearLayout
+                <com.invoiceapp.android.custom.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:orientation="vertical">
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="@string/business_details_desc"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_small"/>
 
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:hint="@string/phone"
-                        android:inputType="number"
-                        android:padding="16dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginStart="16dp"
-                        android:background="@color/gray_light" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:hint="@string/email_hint"
-                        android:inputType="textEmailAddress"
-                        android:padding="16dp" />
-
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:clipChildren="true"
-                android:clipToPadding="true"
-                app:cardPreventCornerOverlap="true"
-                app:cardCornerRadius="2dp">
-
-                <LinearLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:orientation="vertical">
-
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:hint="@string/address_1"
-                        android:padding="16dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginStart="16dp"
-                        android:background="@color/gray_light" />
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="2dp">
 
                     <EditText
+                        android:id="@+id/businessNameEdt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
                         android:background="#fff"
-                        android:hint="@string/address_2"
-                        android:padding="16dp" />
+                        android:hint="@string/business_name"
+                        android:padding="16dp"
+                        android:text="@={model.businessName}"/>
+                </android.support.v7.widget.CardView>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginStart="16dp"
-                        android:background="@color/gray_light" />
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true"
+                    android:padding="3dp"
+                    app:cardCornerRadius="2dp">
 
-                    <EditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#fff"
-                        android:hint="@string/address_3"
-                        android:padding="16dp" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        android:layout_margin="1dp"
+                        android:orientation="vertical">
 
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="60dp" />
-        </LinearLayout>
-    </ScrollView>
+                        <EditText
+                            android:id="@+id/phoneNumberEdt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:hint="@string/phone"
+                            android:text="@={model.phone}"
+                            android:inputType="number"
+                            android:padding="16dp"/>
 
-</RelativeLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="16dp"
+                            android:background="@color/gray_light"/>
+
+                        <EditText
+                            android:id="@+id/emailEdt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:hint="@string/email_hint"
+                            android:text="@={model.email}"
+                            android:inputType="textEmailAddress"
+                            android:padding="16dp"/>
+
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:clipChildren="true"
+                    android:clipToPadding="true"
+                    app:cardCornerRadius="2dp"
+                    app:cardPreventCornerOverlap="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:orientation="vertical">
+
+
+                        <EditText
+                            android:id="@+id/address1Edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:hint="@string/address_1"
+                            android:text="@={model.address1}"
+                            android:padding="16dp"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="16dp"
+                            android:background="@color/gray_light"/>
+
+                        <EditText
+                            android:id="@+id/address2Edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:hint="@string/address_2"
+                            android:text="@={model.address2}"
+                            android:padding="16dp"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="16dp"
+                            android:background="@color/gray_light"/>
+
+                        <EditText
+                            android:id="@+id/address3Edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#fff"
+                            android:text="@={model.address3}"
+                            android:hint="@string/address_3"
+                            android:padding="16dp"/>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"/>
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

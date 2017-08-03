@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounder_bg_white2"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titleTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Select Image Using"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/titleTxt"
+        android:background="#919191" />
+
+    <TextView
+        android:id="@+id/cameraTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleTxt"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        android:text="Camera"
+        android:textColor="@color/black"
+        android:textSize="19sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/cameraTxt"
+        android:background="#919191" />
+
+    <TextView
+        android:id="@+id/galleryTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cameraTxt"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        android:text="Gallery"
+        android:textColor="@color/black"
+        android:textSize="19sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/galleryTxt"
+        android:background="#919191" />
+
+    <TextView
+        android:id="@+id/cancel_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/galleryTxt"
+        android:padding="16dp"
+        android:text="Cancel"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+</RelativeLayout>

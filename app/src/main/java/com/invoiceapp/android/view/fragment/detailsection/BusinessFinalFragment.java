@@ -1,6 +1,5 @@
 package com.invoiceapp.android.view.fragment.detailsection;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +10,8 @@ import android.view.ViewGroup;
 
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentBusinessFinalBinding;
-import com.invoiceapp.android.view.activity.HomeActivity;
+import com.invoiceapp.android.view.activity.detailssection.DetailSectionMainActivity;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 
 public class BusinessFinalFragment extends Fragment {
 
@@ -20,10 +20,22 @@ public class BusinessFinalFragment extends Fragment {
     }
 
     private FragmentBusinessFinalBinding binding;
+    BusinessDetailModel businessDetailModel;
 
-    public static BusinessFinalFragment newInstance() {
+
+    public static BusinessFinalFragment newInstance(BusinessDetailModel businessDetailModel) {
         BusinessFinalFragment fragment = new BusinessFinalFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("item", businessDetailModel);
+        fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        businessDetailModel = bundle.getParcelable("item");
     }
 
     @Override
@@ -42,7 +54,6 @@ public class BusinessFinalFragment extends Fragment {
     }
 
     public void onCreateInvoiceBtnClick() {
-        startActivity(new Intent(getActivity(), HomeActivity.class));
-        getActivity().finish();
+        ((DetailSectionMainActivity) getActivity()).switchActivity();
     }
 }

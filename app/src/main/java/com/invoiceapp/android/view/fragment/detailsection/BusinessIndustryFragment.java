@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.adapter.IndustryListRowAdapter;
 import com.invoiceapp.android.databinding.FragmentBusinessIndustryBinding;
-
-import java.util.ArrayList;
+import com.invoiceapp.android.listener.OnItemClickListener;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 
 public class BusinessIndustryFragment extends Fragment {
 
@@ -22,10 +22,22 @@ public class BusinessIndustryFragment extends Fragment {
     }
 
     private FragmentBusinessIndustryBinding binding;
+    private BusinessDetailModel businessDetailModel;
 
-    public static BusinessIndustryFragment newInstance() {
+    public static BusinessIndustryFragment newInstance(BusinessDetailModel businessDetailModel) {
         BusinessIndustryFragment fragment = new BusinessIndustryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("item", businessDetailModel);
+        fragment.setArguments(bundle);
         return fragment;
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        businessDetailModel = bundle.getParcelable("item");
     }
 
     @Override
@@ -39,10 +51,16 @@ public class BusinessIndustryFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String[] industryArray = getResources().getStringArray(R.array.industry_array);
+        final String[] industryArray = getResources().getStringArray(R.array.industry_array);
         binding.industryList.setLayoutManager(new LinearLayoutManager(getActivity()));
         IndustryListRowAdapter adapter = new IndustryListRowAdapter(getActivity(), industryArray);
         binding.industryList.setAdapter(adapter);
+        adapter.onItemClick(new OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                businessDetailModel.setBusinessIndustry(industryArray[position]);
+            }
+        });
     }
 
 
