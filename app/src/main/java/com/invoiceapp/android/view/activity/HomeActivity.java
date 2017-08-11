@@ -33,8 +33,8 @@ import com.invoiceapp.android.view.fragment.settings.SettingsMainFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private int navigationIcons[] = {R.drawable.invoice_icon, R.drawable.estimates_icon, R.drawable.reports_icon, R.drawable.my_items,
-            R.drawable.clients_icon, R.drawable.account_icon, R.drawable.support_icon, R.drawable.setting_icon};
+    private int navigationIcons[] = {R.drawable.ic_invoices, R.drawable.ic_estimates, R.drawable.ic_report, R.drawable.ic_my_items,
+            R.drawable.ic_client, R.drawable.ic_account, R.drawable.ic_support, R.drawable.ic_setting};
     private ActivityHomeBinding binding;
 
     @Override
@@ -46,7 +46,6 @@ public class HomeActivity extends AppCompatActivity {
         Utility.addFragment(HomeActivity.this, InvoiceMainFragment.newInstance(),
                 "InvoiceMainFragment",
                 binding.container.getId(), "InvoiceMainFragment");
-
     }
 
     @Override

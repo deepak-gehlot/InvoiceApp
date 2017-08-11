@@ -22,7 +22,7 @@
     <!--login fragement end-->
 
     <!--business details start-->
-    <string name="business_details">BusinessDetails</string>
+    <string name="business_details">Business Details</string>
     <string name="business_details_desc">Appears on all invoices. Can be edited any time.</string>
     <string name="business_name">Business Name</string>
     <string name="phone">Phone</string>
