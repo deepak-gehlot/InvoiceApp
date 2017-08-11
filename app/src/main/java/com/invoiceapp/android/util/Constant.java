@@ -41,30 +41,5 @@ public class Constant {
 
     public static final String LOGIN_METHOD = "login";
     public static final String REGISTRATION_METHOD = "signup";
-    public static final String COMMENT_METHOD = "product_comment";
-    public static final String METHOD_COMMENT_REPLY = "comment_reply";
-    public static final String METHOD_ADD_PRODUCT = "add_product";
-    public static final String METHOD_GET_ALL_PRODUCT = "get_all_product";
-    public static final String METHOD_LIKE_USER = "save_users";
-    public static final String METHOD_UNLIKE = "remove_save_users";
-    public static final String METHOD_UPDATE_PHOTO = "update_user_pic";
-    public static final String METHOD_USER_PROFILE = "check_saved_user_by_id";
-    public static final String METHOD_GET_SAVED_USER = "get_saved_user_by_user_id";
-    public static final String METHOD_GET_WIZARD_QUE_ANS = "get_wizard_que_ans";
-    public static final String METHOD_GET_WIZARD_RESULT = "get_wizard_result";
-    public static final String METHOD_GET_UPGRADE_PLAN = "get_upgrade_plans";
-    public static final String METHOD_FILTER = "filter";
-    public static final String METHOD_ADD_TO_TOP_PRICE = "get_add_to_top_price";
-    public static final String METHOD_SAVE_CHAT_USER = "save_chat_users";
-    public static final String METHOD_GET_CHAT_USER_LIST = "get_chat_user_list";
-    public static final String METHOD_GET_CHAT_MESSAGE = "get_chat_messages";
-    public static final String METHOD_SEND_CHAT = "save_chat_messages";
-    public static final String METHOD_SEND_DEVICE_TOKEN = "save_device_info";
-    public static final String METHOD_EDIT_PROFILE = "edit_profile";
-    public static final String METHOD_SAVE_OFFER_STATUS = "save_offer_status";
-    public static final String METHOD_GET_RETAILER_PLAN = "get_retailer_plan";
-    public static final String METHOD_MAKE_USER_RETAILER = "make_user_retailer";
-    public static final String METHOD_REVIEW = "review";
-    public static final String METHOD_CONVERT = "currency_convert";
-    public static final String METHOD_SAVE_ORDER = "bikespot_order";
+
 }
