@@ -31,13 +31,12 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     // https://mvnrepository.com/artifact/com.googlecode.android-query/android-query
-    compile group: 'com.googlecode.android-query', name: 'android-query', version: '0.25.9'
-
+    compile 'com.googlecode.android-query:android-query:0.25.9'
     compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.4.0'
@@ -49,4 +48,7 @@ dependencies {
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.github.jkwiecien:EasyImage:1.3.1'
     testCompile 'junit:junit:4.12'
+    compile files('lib/itext7-pdfa-7.0.2.jar')
+    compile 'com.github.barteksc:android-pdf-viewer:2.6.1'
+    compile files('lib/itextpdf-5.3.3.jar')
 }
