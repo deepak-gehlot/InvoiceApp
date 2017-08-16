@@ -5,7 +5,7 @@ package com.invoiceapp.android.util;
  */
 
 public class Constant {
-    public static final String URL = "http://risensys.com/bikespot/webservice/api.php";
+    public static final String URL = "http://www.marvellousinstitute.com/API/register_log_API.php";
 
     public static final String PROGRESS = "progress";
     public static final String MESSAGE = "message";
@@ -39,7 +39,7 @@ public class Constant {
     /*webservice method name*/
     public static final String SUCCESS = "success";
 
-    public static final String LOGIN_METHOD = "login";
-    public static final String REGISTRATION_METHOD = "signup";
+    public static final String LOGIN_METHOD = "user_login";
+    public static final String REGISTRATION_METHOD = "user_signup";
 
 }

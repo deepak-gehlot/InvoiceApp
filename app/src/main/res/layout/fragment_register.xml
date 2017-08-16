@@ -1,0 +1,73 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.invoiceapp.android.view.model.RegisterModel"/>
+
+        <variable
+            name="fragment"
+            type="com.invoiceapp.android.view.activity.login.RegisterFragment"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context="com.invoiceapp.android.view.activity.login.RegisterFragment">
+
+        <EditText
+            android:id="@+id/email_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:lines="1"
+            android:text="@={model.email_id}"
+            android:textColor="@color/black"/>
+
+
+        <EditText
+            android:id="@+id/password_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/email_edt"
+            android:layout_marginTop="10dp"
+            android:hint="@string/password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:text="@={model.password}"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/cpassword_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password_edt"
+            android:layout_marginTop="10dp"
+            android:hint="@string/cpassword"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:text="@={model.cpassword}"
+            android:textColor="@color/black"/>
+
+
+        <com.invoiceapp.android.custom.CustomButton
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cpassword_edt"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="@{()->fragment.onRegisterClick(model)}"
+            android:text="REGISTER"/>
+
+
+    </RelativeLayout>
+</layout>

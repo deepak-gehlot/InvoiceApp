@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.ActivityGetStartedBinding;
 import com.invoiceapp.android.view.activity.detailssection.DetailSectionMainActivity;
+import com.invoiceapp.android.view.activity.login.LoginActivity;
 
 public class GetStartedActivity extends AppCompatActivity {
 
@@ -20,6 +21,11 @@ public class GetStartedActivity extends AppCompatActivity {
 
     public void onGetStartedClick() {
         startActivity(new Intent(GetStartedActivity.this, DetailSectionMainActivity.class));
+        finish();
+    }
+
+    public void onAlreadyAccountClick() {
+        startActivity(new Intent(GetStartedActivity.this, LoginActivity.class));
         finish();
     }
 }

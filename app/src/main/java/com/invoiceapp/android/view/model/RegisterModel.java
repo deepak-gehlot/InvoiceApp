@@ -10,12 +10,13 @@ import com.invoiceapp.android.util.Constant;
  * Created by RWS 6 on 8/11/2017.
  */
 
-public class LoginModel extends BaseObservable {
-    private String method = Constant.LOGIN_METHOD;
+public class RegisterModel extends BaseObservable {
+    private String method = Constant.REGISTRATION_METHOD;
 
 
     private String email_id = "";
     private String password = "";
+    private String cpassword = "";
 
     @Bindable
     public String getEmail_id() {
@@ -35,5 +36,15 @@ public class LoginModel extends BaseObservable {
     public void setPassword(String password) {
         this.password = password;
         notifyPropertyChanged(BR.password);
+    }
+
+    @Bindable
+    public String getCpassword() {
+        return cpassword;
+    }
+
+    public void setCpassword(String cpassword) {
+        this.cpassword = cpassword;
+        notifyPropertyChanged(BR.cpassword);
     }
 }

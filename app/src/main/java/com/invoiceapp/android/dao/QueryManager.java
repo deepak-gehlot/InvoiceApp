@@ -51,11 +51,11 @@ public class QueryManager {
         return instance;
     }
 
-    public void postRequest(Context context, String url, String json, final CallbackListener callback) {
+    public void postRequest(Context context, String json, final CallbackListener callback) {
         if (Extension.getInstance().executeStrategy(context, "", ValidationTemplate.INTERNET)) {
             RequestBody body = RequestBody.create(JSON, json);
             Request request = new Request.Builder()
-                    .url(Constant.URL + url)
+                    .url(Constant.URL)
                     .post(body).cacheControl(CacheControl.FORCE_NETWORK)
                     .build();
             client.newCall(request).enqueue(new Callback() {
