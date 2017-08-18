@@ -5,7 +5,6 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -136,17 +135,21 @@ public class SplashActivity extends AppCompatActivity {
         document.add(prProfile);
 
 
-        Chunk c = new Chunk("Total Cost:", smallBold);
+        /*Chunk c = new Chunk("Total Cost:", smallBold);
         c.setBackground(BaseColor.RED);
         Paragraph p = new Paragraph(c);
         p.setAlignment(Element.ALIGN_RIGHT);
-        document.add(p);
+        document.add(p);*/
 
-        PdfPCell pppp = new PdfPCell(new Paragraph("Hello World"));
-        myCell.setBorder(Rectangle.BOX);
-        pppp.setBackgroundColor(BaseColor.BLACK);
-        document.add(pppp);
+        PdfPTable table = new PdfPTable(1);
+        table.setWidthPercentage(100.0f);
+        Paragraph elements = new Paragraph("Hello World");
+        elements.setAlignment(Element.ALIGN_RIGHT);
+        PdfPCell pppp = new PdfPCell();
+        pppp.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        table.addCell(pppp);
 
+        document.add(table);
 // Create new Page in PDF
         document.newPage();
     }
