@@ -7,6 +7,7 @@
     <string name="get_started">GET STARTED</string>
     <string name="already_account">Already have an account?  <b>Login</b></string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="wrong">Something went wrong, Please try again later.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -17,12 +18,13 @@
     <!--login fragement start-->
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="cpassword">Confirm Password</string>
     <string name="login">LOGIN</string>
     <string name="forgot_password">FORGOT PASSWORD</string>
     <!--login fragement end-->
 
     <!--business details start-->
-    <string name="business_details">BusinessDetails</string>
+    <string name="business_details">Business Details</string>
     <string name="business_details_desc">Appears on all invoices. Can be edited any time.</string>
     <string name="business_name">Business Name</string>
     <string name="phone">Phone</string>

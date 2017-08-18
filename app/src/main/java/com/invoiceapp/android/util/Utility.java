@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 
 import com.invoiceapp.android.R;
+import com.invoiceapp.android.listener.DialogListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -319,7 +320,7 @@ aq.id(R.id.image).image(url, options);*/
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(title);
         builder.setMessage(msg);
-        builder.setCancelable(false);
+        builder.setCancelable(true);
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -577,7 +578,7 @@ aq.id(R.id.image).image(url, options);*/
         textView.setVisibility(visibility);
     }
 
-   /* public static void setDialog(Context appContext, String titleStr, String msgStr, String leftStr, String rightStr, final DialogListener dialogListener) {
+    public static void setDialog(Context appContext, String titleStr, String msgStr, String leftStr, String rightStr, final DialogListener dialogListener) {
         final Dialog dialog = new Dialog(appContext);
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -615,7 +616,6 @@ aq.id(R.id.image).image(url, options);*/
         dialog.findViewById(R.id.send_action).setOnClickListener(onClickListener);
         dialog.show();
     }
-*/
     public static int randInt(int min, int max) {
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;

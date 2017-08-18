@@ -1,29 +1,24 @@
 package com.invoiceapp.android.view.activity;
 
+import android.Manifest;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewGroup;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.Gravity;
 
+import com.github.jksiezni.permissive.PermissionsGrantedListener;
+import com.github.jksiezni.permissive.PermissionsRefusedListener;
+import com.github.jksiezni.permissive.Permissive;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.adapter.NavigationAdapter;
 import com.invoiceapp.android.databinding.ActivityHomeBinding;
 import com.invoiceapp.android.listener.OnItemClickListener;
 import com.invoiceapp.android.util.Utility;
+import com.invoiceapp.android.view.ProductListAllPDF;
 import com.invoiceapp.android.view.fragment.account.MyAccountFragment;
 import com.invoiceapp.android.view.fragment.estimates.EstimateMainFragment;
 import com.invoiceapp.android.view.fragment.invoice.InvoiceMainFragment;
@@ -33,8 +28,8 @@ import com.invoiceapp.android.view.fragment.settings.SettingsMainFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private int navigationIcons[] = {R.drawable.invoice_icon, R.drawable.estimates_icon, R.drawable.reports_icon, R.drawable.my_items,
-            R.drawable.clients_icon, R.drawable.account_icon, R.drawable.support_icon, R.drawable.setting_icon};
+    private int navigationIcons[] = {R.drawable.ic_invoices, R.drawable.ic_estimates, R.drawable.ic_report, R.drawable.ic_my_items,
+            R.drawable.ic_client, R.drawable.ic_account, R.drawable.ic_support, R.drawable.ic_setting};
     private ActivityHomeBinding binding;
 
     @Override
@@ -46,6 +41,24 @@ public class HomeActivity extends AppCompatActivity {
         Utility.addFragment(HomeActivity.this, InvoiceMainFragment.newInstance(),
                 "InvoiceMainFragment",
                 binding.container.getId(), "InvoiceMainFragment");
+
+
+        new Permissive.Request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .whenPermissionsGranted(new PermissionsGrantedListener() {
+                    @Override
+                    public void onPermissionsGranted(String[] permissions) throws SecurityException {
+                        // given permissions are granted
+                        ProductListAllPDF productListAllPDF = new ProductListAllPDF();
+                        productListAllPDF.createPDF(HomeActivity.this, "onetwo");
+                    }
+                })
+                .whenPermissionsRefused(new PermissionsRefusedListener() {
+                    @Override
+                    public void onPermissionsRefused(String[] permissions) {
+                        // given permissions are refused
+                        finish();
+                    }
+                }).execute(HomeActivity.this);
 
     }
 

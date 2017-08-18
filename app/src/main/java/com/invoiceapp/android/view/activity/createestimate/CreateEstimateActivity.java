@@ -39,7 +39,7 @@ public class CreateEstimateActivity extends AppCompatActivity {
     private void setTitleActions() {
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setTitle("Estimates");
-        binding.toolbar.setNavigationIcon(R.drawable.back_icon);
+        binding.toolbar.setNavigationIcon(R.drawable.back_icon_white);
         binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

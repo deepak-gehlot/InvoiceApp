@@ -80,17 +80,17 @@ public class InvoiceMainFragment extends Fragment {
         for (int i = 0; i < 3; i++) {
             FragmentModel fragmentModel = new FragmentModel();
             switch (i) {
-                case 0:
+                case 2:
                     fragmentModel.setTitle(getString(R.string.all));
                     fragmentModel.setFragment(AllInvoiceFragment.newInstance());
                     list.add(fragmentModel);
                     break;
-                case 1:
+                case 0:
                     fragmentModel.setTitle(getString(R.string.outstanding));
                     fragmentModel.setFragment(OutstandingFragment.newInstance());
                     list.add(fragmentModel);
                     break;
-                case 2:
+                case 1:
                     fragmentModel.setTitle(getString(R.string.paid));
                     fragmentModel.setFragment(PaidFragment.newInstance());
                     list.add(fragmentModel);

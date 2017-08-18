@@ -81,17 +81,17 @@ public class EstimateMainFragment extends Fragment {
         for (int i = 0; i < 3; i++) {
             FragmentModel fragmentModel = new FragmentModel();
             switch (i) {
-                case 0:
+                case 2:
                     fragmentModel.setTitle(getString(R.string.all));
                     fragmentModel.setFragment(AllEstimatesFragment.newInstance());
                     list.add(fragmentModel);
                     break;
-                case 1:
+                case 0:
                     fragmentModel.setTitle("OPEN");
                     fragmentModel.setFragment(OpenEstimatesFragment.newInstance());
                     list.add(fragmentModel);
                     break;
-                case 2:
+                case 1:
                     fragmentModel.setTitle("CLOSED");
                     fragmentModel.setFragment(ClosedEstimatesFragment.newInstance());
                     list.add(fragmentModel);
