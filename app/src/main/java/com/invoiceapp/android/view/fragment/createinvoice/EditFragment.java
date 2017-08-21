@@ -1,13 +1,18 @@
 package com.invoiceapp.android.view.fragment.createinvoice;
 
 
+import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.invoiceapp.android.R;
+import com.invoiceapp.android.databinding.FragmentEditBinding;
+import com.invoiceapp.android.view.activity.businessdetails.BusinessDetailsActivity;
 
 public class EditFragment extends Fragment {
 
@@ -20,11 +25,22 @@ public class EditFragment extends Fragment {
         return fragment;
     }
 
+    private FragmentEditBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_edit, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit, container, false);
+        return binding.getRoot();
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.setFragment(this);
+    }
+
+    public void onBusinessNameClick() {
+        startActivity(new Intent(getActivity(), BusinessDetailsActivity.class));
+    }
 }
