@@ -24,11 +24,13 @@ public class CreateEstimateActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ActivityCreateInvoiceBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_invoice);
         setTitleActions();
+
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         binding.container.setAdapter(mSectionsPagerAdapter);

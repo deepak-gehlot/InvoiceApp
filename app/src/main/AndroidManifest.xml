@@ -55,6 +55,8 @@
             android:label="@string/title_activity_business_details"
             android:theme="@style/AppTheme">
         </activity>
+        <activity android:name=".view.activity.CreateNewClient">
+        </activity>
     </application>
 
 </manifest>

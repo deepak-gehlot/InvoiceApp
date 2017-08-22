@@ -15,6 +15,7 @@ import com.invoiceapp.android.BR;
 public class BusinessDetailModel extends BaseObservable implements Parcelable {
 
     public String businessName = "";
+    public String vat = "";
     public String phone = "";
     public String email = "";
     public String address1 = "";
@@ -22,6 +23,9 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
     public String address3 = "";
     public String businessIndustry = "";
     public String logo = "";
+    public String mobile = "";
+    public String fax = "";
+    public String website = "";
 
     @Bindable
     public String getBusinessName() {
@@ -31,6 +35,14 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
     public void setBusinessName(String businessName) {
         this.businessName = businessName;
         notifyPropertyChanged(BR.businessName);
+    }
+
+    public String getVat() {
+        return vat;
+    }
+
+    public void setVat(String vat) {
+        this.vat = vat;
     }
 
     @Bindable
@@ -104,6 +116,33 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
     }
 
 
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public BusinessDetailModel() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -112,6 +151,7 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.businessName);
+        dest.writeString(this.vat);
         dest.writeString(this.phone);
         dest.writeString(this.email);
         dest.writeString(this.address1);
@@ -119,13 +159,14 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
         dest.writeString(this.address3);
         dest.writeString(this.businessIndustry);
         dest.writeString(this.logo);
-    }
-
-    public BusinessDetailModel() {
+        dest.writeString(this.mobile);
+        dest.writeString(this.fax);
+        dest.writeString(this.website);
     }
 
     protected BusinessDetailModel(Parcel in) {
         this.businessName = in.readString();
+        this.vat = in.readString();
         this.phone = in.readString();
         this.email = in.readString();
         this.address1 = in.readString();
@@ -133,9 +174,12 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
         this.address3 = in.readString();
         this.businessIndustry = in.readString();
         this.logo = in.readString();
+        this.mobile = in.readString();
+        this.fax = in.readString();
+        this.website = in.readString();
     }
 
-    public static final Parcelable.Creator<BusinessDetailModel> CREATOR = new Parcelable.Creator<BusinessDetailModel>() {
+    public static final Creator<BusinessDetailModel> CREATOR = new Creator<BusinessDetailModel>() {
         @Override
         public BusinessDetailModel createFromParcel(Parcel source) {
             return new BusinessDetailModel(source);

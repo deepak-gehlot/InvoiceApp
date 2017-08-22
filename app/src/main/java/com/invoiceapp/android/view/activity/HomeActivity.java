@@ -48,8 +48,7 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onPermissionsGranted(String[] permissions) throws SecurityException {
                         // given permissions are granted
-                        ProductListAllPDF productListAllPDF = new ProductListAllPDF();
-                        productListAllPDF.createPDF(HomeActivity.this, "onetwo");
+
                     }
                 })
                 .whenPermissionsRefused(new PermissionsRefusedListener() {

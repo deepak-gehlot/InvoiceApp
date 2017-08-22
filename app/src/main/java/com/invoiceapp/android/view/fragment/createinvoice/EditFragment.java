@@ -12,9 +12,14 @@ import android.view.ViewGroup;
 
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentEditBinding;
+import com.invoiceapp.android.view.ProductListAllPDF;
+import com.invoiceapp.android.view.activity.CreateNewClient;
 import com.invoiceapp.android.view.activity.businessdetails.BusinessDetailsActivity;
 
+import static com.invoiceapp.android.view.activity.createinvoice.CreateInvoiceActivity.model;
+
 public class EditFragment extends Fragment {
+
 
     public EditFragment() {
         // Required empty public constructor
@@ -43,4 +48,17 @@ public class EditFragment extends Fragment {
     public void onBusinessNameClick() {
         startActivity(new Intent(getActivity(), BusinessDetailsActivity.class));
     }
+
+    public void onClientNameClick() {
+        startActivity(new Intent(getActivity(), CreateNewClient.class));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ProductListAllPDF productListAllPDF = new ProductListAllPDF();
+        productListAllPDF.createPDF(getActivity(), model, "onetwo");
+    }
+
+
 }

@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 
 import com.invoiceapp.android.R;
+import com.invoiceapp.android.view.model.CreateInvoiceModel;
 import com.invoiceapp.android.view.model.ProductModel;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
@@ -52,7 +53,7 @@ public class ProductListAllPDF {
     //we will add some products to arrayListRProductModel to show in the PDF document
     private static ArrayList<ProductModel> arrayListRProductModel = new ArrayList<ProductModel>();
 
-    public boolean createPDF(Context context, String reportName) {
+    public boolean createPDF(Context context, CreateInvoiceModel createInvoiceModel, String reportName) {
 
         try {
             //creating a directory in SD card
@@ -90,7 +91,7 @@ public class ProductListAllPDF {
             //Adding meta-data to the document
             addMetaData(document);
             //Adding Title(s) of the document
-            addTitlePage(context, document);
+            addTitlePage(context, document, createInvoiceModel);
             //Adding main contents of the document
             addContent(document);
             //Closing the document
@@ -123,24 +124,30 @@ public class ProductListAllPDF {
      * @param document
      * @throws DocumentException
      */
-    private static void addTitlePage(Context context, Document document)
+    private static void addTitlePage(Context context, Document document, CreateInvoiceModel createInvoiceModel)
             throws DocumentException {
         Paragraph paragraph = new Paragraph();
 
         try {
             Drawable d = ContextCompat.getDrawable(context, R.mipmap.ic_launcher);
             BitmapDrawable bitDw = ((BitmapDrawable) d);
-            Bitmap bmp = bitDw.getBitmap();
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            Image image = Image.getInstance(stream.toByteArray());
-            image.setAlignment(Element.ALIGN_RIGHT);
+            Bitmap bmp = createInvoiceModel.getLogo();
+            Image image = null;
+            if (bmp != null) {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                image = Image.getInstance(stream.toByteArray());
+                image.setAlignment(Element.ALIGN_RIGHT);
+                image.scaleAbsolute(100,100);
+            }
 
             // Adding several title of the document. Paragraph class is available in  com.itextpdf.text.Paragraph
-            Paragraph childParagraph = new Paragraph("deepak@gmail.com", FONT_SUBTITLE); //public static Font FONT_TITLE = new Font(Font.FontFamily.TIMES_ROMAN, 22,Font.BOLD);
-            Paragraph emailPara = new Paragraph("PLUS Electronics Pvt. Ltd.", FONT_TITLE);
+            Paragraph childParagraph = new Paragraph(createInvoiceModel.getEmail(), FONT_SUBTITLE); //public static Font FONT_TITLE = new Font(Font.FontFamily.TIMES_ROMAN, 22,Font.BOLD);
+            Paragraph emailPara = new Paragraph(createInvoiceModel.getBusinessName(), FONT_TITLE);
             paragraph.add(emailPara);
-            childParagraph.add(image);
+            if (bmp != null) {
+                childParagraph.add(image);
+            }
             paragraph.add(childParagraph);
 
             document.add(paragraph);

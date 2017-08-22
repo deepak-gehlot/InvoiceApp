@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import com.invoiceapp.android.listener.PermissionListener;
 import com.invoiceapp.android.view.fragment.createinvoice.EditFragment;
 import com.invoiceapp.android.view.fragment.createinvoice.HistoryInvoiceFragment;
 import com.invoiceapp.android.view.fragment.createinvoice.PreviewInvoiceFragment;
+import com.invoiceapp.android.view.model.CreateInvoiceModel;
 
 import java.io.File;
 
@@ -35,17 +37,35 @@ public class CreateInvoiceActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ActivityCreateInvoiceBinding binding;
-
+    public static CreateInvoiceModel model;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_invoice);
         setTitleActions();
-
+        model = new CreateInvoiceModel("", "", "", "", "", "", "", "", "", "", null);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         binding.container.setAdapter(mSectionsPagerAdapter);
         binding.tabs.setupWithViewPager(binding.container);
 
+        binding.container.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private void setTitleActions() {

@@ -19,10 +19,13 @@ import com.invoiceapp.android.view.fragment.businessdetails.ContactFragment;
 import com.invoiceapp.android.view.fragment.businessdetails.GeneralDetailFragment;
 import com.invoiceapp.android.view.fragment.businessdetails.LogoFragment;
 
+import static com.invoiceapp.android.view.activity.createinvoice.CreateInvoiceActivity.model;
+
 public class BusinessDetailsActivity extends AppCompatActivity {
 
     private ActivityBusinessDetailsBinding binding;
     private SectionsPagerAdapter mSectionsPagerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,13 +110,13 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return GeneralDetailFragment.newInstance();
+                    return GeneralDetailFragment.newInstance(model);
                 case 1:
-                    return ContactFragment.newInstance();
+                    return ContactFragment.newInstance(model);
                 case 2:
-                    return LogoFragment.newInstance();
+                    return LogoFragment.newInstance(model);
                 default:
-                    return GeneralDetailFragment.newInstance();
+                    return GeneralDetailFragment.newInstance(model);
             }
         }
 

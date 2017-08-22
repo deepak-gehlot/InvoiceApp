@@ -65,6 +65,13 @@ public class PreviewInvoiceFragment extends Fragment {
 
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if (isVisibleToUser){
+            drawPdf();
+        }
+    }
+
     private void drawPdf() {
         //getting the full path of the PDF report name
         String mPath = Environment.getExternalStorageDirectory().toString()
