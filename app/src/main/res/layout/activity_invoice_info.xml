@@ -1,46 +1,45 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_invoice_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.invoiceapp.android.view.activity.InvoiceInfoActivity">
 
-    <data>
 
-        <variable
-            name="model"
-            type="com.invoiceapp.android.view.model.CreateInvoiceModel"/>
-    </data>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        app:title="Invoice Info"
+        app:titleTextColor="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        tools:context="com.invoiceapp.android.view.fragment.businessdetails.ContactFragment">
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.invoiceapp.android.view.activity.InvoiceInfoActivity">
+
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel"
-            >
+            android:theme="@style/TextLabel">
 
             <EditText
-                android:id="@+id/phoneNumberEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:text="@={model.phoneNumber}"/>
-        </android.support.design.widget.TextInputLayout>
+                android:hint="Invoice #"
+                android:textColorHint="@color/green" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <EditText
-                android:id="@+id/mobileNumberEdt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Mobile Number"
-                android:text="@={model.mobileNumber}"/>
         </android.support.design.widget.TextInputLayout>
 
 
@@ -51,12 +50,23 @@
             android:theme="@style/TextLabel">
 
             <EditText
-                android:id="@+id/faxEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="FAX"
-                android:text="@={model.fax}"
-                />
+                android:hint="Date" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Terms" />
+
         </android.support.design.widget.TextInputLayout>
 
 
@@ -67,13 +77,11 @@
             android:theme="@style/TextLabel">
 
             <EditText
-                android:id="@+id/emailEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:text="@={model.email}"/>
-        </android.support.design.widget.TextInputLayout>
+                android:hint="Due" />
 
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -82,14 +90,11 @@
             android:theme="@style/TextLabel">
 
             <EditText
-                android:id="@+id/websiteEdt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Website"
-                android:text="@={model.website}"/>
-        </android.support.design.widget.TextInputLayout>
+                android:hint="PO Number" />
 
-        <!--//phone mobile fax email website-->
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
-</layout>
+</LinearLayout>

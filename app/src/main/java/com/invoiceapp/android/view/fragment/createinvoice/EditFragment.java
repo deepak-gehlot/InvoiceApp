@@ -13,7 +13,12 @@ import android.view.ViewGroup;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentEditBinding;
 import com.invoiceapp.android.view.ProductListAllPDF;
+import com.invoiceapp.android.view.activity.AddItemActivity;
 import com.invoiceapp.android.view.activity.CreateNewClient;
+import com.invoiceapp.android.view.activity.DiscountActivity;
+import com.invoiceapp.android.view.activity.InvoiceInfoActivity;
+import com.invoiceapp.android.view.activity.ShippingInfoActivity;
+import com.invoiceapp.android.view.activity.TaxesActivity;
 import com.invoiceapp.android.view.activity.businessdetails.BusinessDetailsActivity;
 
 import static com.invoiceapp.android.view.activity.createinvoice.CreateInvoiceActivity.model;
@@ -45,6 +50,10 @@ public class EditFragment extends Fragment {
         binding.setFragment(this);
     }
 
+    public void onInvoiceInfoClick() {
+        startActivity(new Intent(getActivity(), InvoiceInfoActivity.class));
+    }
+
     public void onBusinessNameClick() {
         startActivity(new Intent(getActivity(), BusinessDetailsActivity.class));
     }
@@ -53,12 +62,27 @@ public class EditFragment extends Fragment {
         startActivity(new Intent(getActivity(), CreateNewClient.class));
     }
 
+
+    public void onAddItemClick() {
+        startActivity(new Intent(getActivity(), AddItemActivity.class));
+    }
+
+    public void onDiscountClick() {
+        startActivity(new Intent(getActivity(), DiscountActivity.class));
+    }
+
+    public void onShippingClick() {
+        startActivity(new Intent(getActivity(), ShippingInfoActivity.class));
+    }
+
+    public void onTaxClick() {
+        startActivity(new Intent(getActivity(), TaxesActivity.class));
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         ProductListAllPDF productListAllPDF = new ProductListAllPDF();
         productListAllPDF.createPDF(getActivity(), model, "onetwo");
     }
-
-
 }
