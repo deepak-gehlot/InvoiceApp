@@ -27,7 +27,8 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/nameEdt"
@@ -40,7 +41,8 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/vatEdt"
@@ -72,7 +74,8 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/line1Edt"
@@ -85,7 +88,8 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/line2Edt"
@@ -98,7 +102,8 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
                 <EditText
                     android:id="@+id/line3Edt"

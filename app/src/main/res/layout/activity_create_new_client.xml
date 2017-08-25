@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,201 +10,215 @@
         android:layout_height="match_parent"
         android:background="#f2f2f2"
         android:orientation="vertical"
-        android:padding="16dp"
         tools:context="com.invoiceapp.android.view.activity.CreateNewClient">
 
-
-        <android.support.design.widget.TextInputLayout
+        <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
+            android:background="@color/green"
+            app:title="Add Client"
+            app:titleTextColor="@color/white" />
 
-            <EditText
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f2f2f2"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context="com.invoiceapp.android.view.activity.CreateNewClient">
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mobile"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone" />
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fax"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Fax" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#8c8c8c"
-            android:padding="10dp"
-            android:text="ADDRESS"
-            android:textColor="@color/white"/>
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
-
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Contact"/>
+                android:layout_marginTop="10dp"
+                android:background="#8c8c8c"
+                android:padding="10dp"
+                android:text="ADDRESS"
+                android:textColor="@color/white" />
 
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Line 1"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contact" />
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Line 2"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Line 1" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Line 3"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Line 2" />
 
-        <!---->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#8c8c8c"
-            android:padding="10dp"
-            android:text="SHIPPING ADDRESS"
-            android:textColor="@color/white"/>
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Line 3" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
+            <!---->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Line 1"/>
+                android:layout_marginTop="10dp"
+                android:background="#8c8c8c"
+                android:padding="10dp"
+                android:text="SHIPPING ADDRESS"
+                android:textColor="@color/white" />
 
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Line 2"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            >
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Line 3"/>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Line 1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Line 2" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Line 3" />
+
+            </android.support.design.widget.TextInputLayout>
 
 
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
