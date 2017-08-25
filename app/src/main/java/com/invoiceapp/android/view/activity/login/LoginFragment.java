@@ -2,6 +2,7 @@ package com.invoiceapp.android.view.activity.login;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,10 +20,11 @@ import com.invoiceapp.android.databinding.FragmentLoginBinding;
 import com.invoiceapp.android.listener.CallbackListener;
 import com.invoiceapp.android.listener.DialogListener;
 import com.invoiceapp.android.util.Extension;
+import com.invoiceapp.android.util.PreferenceConnector;
 import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.util.ValidationTemplate;
+import com.invoiceapp.android.view.activity.HomeActivity;
 import com.invoiceapp.android.view.model.LoginModel;
-import com.invoiceapp.android.view.model.RegisterModel;
 
 public class LoginFragment extends Fragment {
 
@@ -64,17 +66,9 @@ public class LoginFragment extends Fragment {
                 if (result != null && !result.isEmpty()) {
                     LoginDao loginDao = new Gson().fromJson(result, LoginDao.class);
                     if (loginDao.status.equals("200")) {
-                        Utility.setDialog(getActivity(), "Message", loginDao.message, "", "OK", new DialogListener() {
-                            @Override
-                            public void onNegative(DialogInterface dialog) {
-                                dialog.dismiss();
-                            }
-
-                            @Override
-                            public void onPositive(DialogInterface dialog) {
-                                dialog.dismiss();
-                            }
-                        });
+                        getActivity().finish();
+                        PreferenceConnector.writeBoolean(getActivity(), PreferenceConnector.IS_LOGIN, true);
+                        startActivity(new Intent(getActivity(), HomeActivity.class));
                         Toast.makeText(getActivity(), loginDao.message, Toast.LENGTH_SHORT).show();
                     } else {
                         Utility.setDialog(getActivity(), "Message", loginDao.message, "", "OK", new DialogListener() {

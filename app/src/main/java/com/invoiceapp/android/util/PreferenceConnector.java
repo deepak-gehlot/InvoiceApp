@@ -20,6 +20,7 @@ public class PreferenceConnector {
     public static final String DEVICE_HEIGHT = "DEVICE_HEIGHT";
     public static final String DEVICE_WIDTH = "DEVICE_WIDTH";
     public static final String DEVICE_TOKEN = "device_token";
+    public static final String IS_LOGIN = "is_login";
 
 
     public static void writeBoolean(Context context, String key, boolean value) {

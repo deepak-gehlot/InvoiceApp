@@ -19,12 +19,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Toast;
 
+import com.activeandroid.query.Select;
 import com.github.jksiezni.permissive.PermissionsGrantedListener;
 import com.github.jksiezni.permissive.PermissionsRefusedListener;
 import com.github.jksiezni.permissive.Permissive;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentBusinessLogoBinding;
+import com.invoiceapp.android.db.BusinessDetailTable;
 import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.view.model.BusinessDetailModel;
 
@@ -71,6 +74,14 @@ public class BusinessLogoFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.setFragment(this);
+
+        BusinessDetailTable businessDetailTable = new Select()
+                .from(BusinessDetailTable.class)
+                .executeSingle();
+        if (businessDetailTable != null && businessDetailTable.image != null) {
+            Toast.makeText(getActivity(), "Data", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void onSelectLogoClick() {
@@ -158,6 +169,8 @@ public class BusinessLogoFragment extends Fragment {
                                         @Override
                                         public void run() {
                                             businessDetailModel.setLogo(Utility.encodeImage(bitmap));
+                                            BusinessDetailTable businessDetailModel = new BusinessDetailTable(Utility.getImageBytes(bitmap));
+                                            businessDetailModel.save();
                                         }
                                     }).start();
                                 }

@@ -18,7 +18,6 @@ import com.invoiceapp.android.adapter.NavigationAdapter;
 import com.invoiceapp.android.databinding.ActivityHomeBinding;
 import com.invoiceapp.android.listener.OnItemClickListener;
 import com.invoiceapp.android.util.Utility;
-import com.invoiceapp.android.view.ProductListAllPDF;
 import com.invoiceapp.android.view.fragment.account.MyAccountFragment;
 import com.invoiceapp.android.view.fragment.estimates.EstimateMainFragment;
 import com.invoiceapp.android.view.fragment.invoice.InvoiceMainFragment;
@@ -41,7 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         Utility.addFragment(HomeActivity.this, InvoiceMainFragment.newInstance(),
                 "InvoiceMainFragment",
                 binding.container.getId(), "InvoiceMainFragment");
-
 
         new Permissive.Request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .whenPermissionsGranted(new PermissionsGrantedListener() {
