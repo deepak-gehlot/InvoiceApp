@@ -1,4 +1,4 @@
-package com.invoiceapp.android;
+package com.invoiceapp.android.view.model;
 
 /**
  * Created by Vish on 7/12/2017.

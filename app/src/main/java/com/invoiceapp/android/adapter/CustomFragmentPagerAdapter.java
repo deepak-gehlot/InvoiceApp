@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.invoiceapp.android.FragmentModel;
+import com.invoiceapp.android.view.model.FragmentModel;
 
 import java.util.ArrayList;
 

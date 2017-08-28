@@ -2,7 +2,6 @@ package com.invoiceapp.android.view.activity.login;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,10 +19,8 @@ import com.invoiceapp.android.databinding.FragmentRegisterBinding;
 import com.invoiceapp.android.listener.CallbackListener;
 import com.invoiceapp.android.listener.DialogListener;
 import com.invoiceapp.android.util.Extension;
-import com.invoiceapp.android.util.PreferenceConnector;
 import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.util.ValidationTemplate;
-import com.invoiceapp.android.view.activity.HomeActivity;
 import com.invoiceapp.android.view.model.RegisterModel;
 
 public class RegisterFragment extends Fragment {
@@ -66,24 +63,11 @@ public class RegisterFragment extends Fragment {
                 if (result != null && !result.isEmpty()) {
                     LoginDao loginDao = new Gson().fromJson(result, LoginDao.class);
                     if (loginDao.status.equals("200")) {
-                        Utility.showMsg(getActivity(), "Message", "Register successfully.");
-                        Toast.makeText(getActivity(), loginDao.message, Toast.LENGTH_SHORT).show();
-                        getActivity().finish();
-                        PreferenceConnector.writeBoolean(getActivity(), PreferenceConnector.IS_LOGIN, true);
-                        startActivity(new Intent(getActivity(), HomeActivity.class));
+                        Utility.showToast(getActivity(), "Register successfully.");
+                        showMessage("You have successfully Registered.\nPlease verify your email and Login.");
                     } else {
-                        Utility.setDialog(getActivity(), "Message", loginDao.message, "", "OK", new DialogListener() {
-                            @Override
-                            public void onNegative(DialogInterface dialog) {
-                                dialog.dismiss();
-                            }
-
-                            @Override
-                            public void onPositive(DialogInterface dialog) {
-                                dialog.dismiss();
-                            }
-                        });
-                        Toast.makeText(getActivity(), loginDao.message, Toast.LENGTH_SHORT).show();
+                        showMessage(loginDao.result.get(0).msg);
+                        Utility.showToast(getActivity(), loginDao.result.get(0).msg);
                     }
                 } else {
                     Toast.makeText(getActivity(), getString(R.string.wrong), Toast.LENGTH_SHORT).show();
@@ -108,5 +92,19 @@ public class RegisterFragment extends Fragment {
             isValid = true;
         }
         return isValid;
+    }
+
+    private void showMessage(String message) {
+        Utility.setDialog(getActivity(), "Message", message, "", "OK", new DialogListener() {
+            @Override
+            public void onNegative(DialogInterface dialog) {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onPositive(DialogInterface dialog) {
+                dialog.dismiss();
+            }
+        });
     }
 }

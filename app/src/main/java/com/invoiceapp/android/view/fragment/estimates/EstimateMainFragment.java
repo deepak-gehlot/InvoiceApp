@@ -10,17 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.invoiceapp.android.FragmentModel;
+import com.invoiceapp.android.view.model.FragmentModel;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.adapter.CustomFragmentPagerAdapter;
 import com.invoiceapp.android.databinding.FragmentEstimatesMainBinding;
-import com.invoiceapp.android.databinding.FragmentInvoiceMainBinding;
 import com.invoiceapp.android.view.activity.HomeActivity;
 import com.invoiceapp.android.view.activity.createestimate.CreateEstimateActivity;
-import com.invoiceapp.android.view.activity.createinvoice.CreateInvoiceActivity;
-import com.invoiceapp.android.view.fragment.invoice.AllInvoiceFragment;
-import com.invoiceapp.android.view.fragment.invoice.OutstandingFragment;
-import com.invoiceapp.android.view.fragment.invoice.PaidFragment;
 
 import java.util.ArrayList;
 

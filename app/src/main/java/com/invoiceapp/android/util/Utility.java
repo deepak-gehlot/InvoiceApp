@@ -42,7 +42,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.listener.DialogListener;
 
@@ -102,8 +101,6 @@ public class Utility {
     }
 
 
-
-
     public static boolean isEmailAddressValid(String email) {
         boolean isEmailValid = false;
         String strExpression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
@@ -138,6 +135,11 @@ public class Utility {
         return encImage;
     }
 
+    public static Bitmap decodeImage(String base64) {
+        byte[] decodedString = Base64.decode(base64, Base64.NO_WRAP);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
+
     public static Fragment getVisibleFragment(AppCompatActivity activity) {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         List<Fragment> fragments = fragmentManager.getFragments();
@@ -155,7 +157,7 @@ public class Utility {
         FragmentManager fragmentManager = activity.getSupportFragmentManager();
         Fragment fragment1 = fragmentManager.findFragmentByTag(tag);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-       // fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
+        // fragmentTransaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
         if (fragment1 != null) {
           /*  if (fragment1 instanceof HomeMainFragment) {
                 fragmentTransaction.replace(id, fragment1);
@@ -616,6 +618,7 @@ aq.id(R.id.image).image(url, options);*/
         dialog.findViewById(R.id.send_action).setOnClickListener(onClickListener);
         dialog.show();
     }
+
     public static int randInt(int min, int max) {
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;

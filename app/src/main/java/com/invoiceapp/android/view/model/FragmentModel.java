@@ -1,4 +1,4 @@
-package com.invoiceapp.android;
+package com.invoiceapp.android.view.model;
 
 import android.support.v4.app.Fragment;
 

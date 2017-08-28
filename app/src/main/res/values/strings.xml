@@ -3,6 +3,9 @@
 
     <!--get started screen started-->
     <string name="title">Invoice Simple</string>
+
+    <string name="register">REGISTER</string>
+
     <string name="title_desc">Create Professional Invoices In Seconds!</string>
     <string name="get_started">GET STARTED</string>
     <string name="already_account">Already have an account?  <b>Login</b></string>

@@ -7,14 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.invoiceapp.android.NavigationModel;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.listener.OnItemClickListener;
-import com.invoiceapp.android.view.activity.HomeActivity;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 /**
  * Created by Vish on 7/12/2017.

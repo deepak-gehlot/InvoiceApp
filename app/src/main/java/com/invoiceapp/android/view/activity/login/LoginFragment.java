@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.invoiceapp.android.R;
+import com.invoiceapp.android.dao.ForgotPasswordDao;
 import com.invoiceapp.android.dao.LoginDao;
 import com.invoiceapp.android.dao.QueryManager;
 import com.invoiceapp.android.databinding.FragmentLoginBinding;
@@ -23,8 +24,11 @@ import com.invoiceapp.android.util.Extension;
 import com.invoiceapp.android.util.PreferenceConnector;
 import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.util.ValidationTemplate;
-import com.invoiceapp.android.view.activity.HomeActivity;
+import com.invoiceapp.android.view.activity.GetStartedActivity;
 import com.invoiceapp.android.view.model.LoginModel;
+
+import org.json.JSONException;
+import org.json.JSONStringer;
 
 public class LoginFragment extends Fragment {
 
@@ -66,23 +70,12 @@ public class LoginFragment extends Fragment {
                 if (result != null && !result.isEmpty()) {
                     LoginDao loginDao = new Gson().fromJson(result, LoginDao.class);
                     if (loginDao.status.equals("200")) {
-                        getActivity().finish();
+                        Utility.showToast(getActivity(), loginDao.message);
                         PreferenceConnector.writeBoolean(getActivity(), PreferenceConnector.IS_LOGIN, true);
-                        startActivity(new Intent(getActivity(), HomeActivity.class));
-                        Toast.makeText(getActivity(), loginDao.message, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getActivity(), GetStartedActivity.class));
+                        getActivity().finish();
                     } else {
-                        Utility.setDialog(getActivity(), "Message", loginDao.message, "", "OK", new DialogListener() {
-                            @Override
-                            public void onNegative(DialogInterface dialog) {
-                                dialog.dismiss();
-                            }
-
-                            @Override
-                            public void onPositive(DialogInterface dialog) {
-                                dialog.dismiss();
-                            }
-                        });
-                        Toast.makeText(getActivity(), loginDao.message, Toast.LENGTH_SHORT).show();
+                        showMessage(loginDao.result.get(0).msg);
                     }
                 } else {
                     Toast.makeText(getActivity(), getString(R.string.wrong), Toast.LENGTH_SHORT).show();
@@ -92,9 +85,54 @@ public class LoginFragment extends Fragment {
     }
 
     public void onForgotPasswordClick(LoginModel loginModel) {
-        Toast.makeText(getActivity(), "Working.", Toast.LENGTH_SHORT).show();
+        Extension extension = Extension.getInstance();
+        if (loginModel.getEmail_id().isEmpty()) {
+            Toast.makeText(getActivity(), "Enter your registered email.", Toast.LENGTH_SHORT).show();
+        } else if (!extension.executeStrategy(getActivity(), loginModel.getEmail_id(), ValidationTemplate.EMAIL)) {
+            Toast.makeText(getActivity(), "Invalid email.", Toast.LENGTH_SHORT).show();
+        } else {
+            try {
+                final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "", "wait...", false, false);
+                JSONStringer jsonStringer = new JSONStringer().object()
+                        .key("email").value("")
+                        .key("method").value("")
+                        .endObject();
+                QueryManager.getInstance().postRequest(getActivity(), jsonStringer.toString(), new CallbackListener() {
+                    @Override
+                    public void onResult(Exception e, String result) {
+                        progressDialog.dismiss();
+                        if (result != null && !result.isEmpty()) {
+                            ForgotPasswordDao forgotPasswordDao = new Gson().fromJson(result, ForgotPasswordDao.class);
+                            if (forgotPasswordDao.status.equals("200")) {
+                                showMessage(forgotPasswordDao.message);
+                            } else {
+                                showMessage(forgotPasswordDao.message);
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), getString(R.string.wrong), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
+    private void showMessage(String message) {
+        Utility.showToast(getActivity(), message);
+        Utility.setDialog(getActivity(), "Message", message, "", "OK", new DialogListener() {
+            @Override
+            public void onNegative(DialogInterface dialog) {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onPositive(DialogInterface dialog) {
+                dialog.dismiss();
+            }
+        });
+    }
 
     private boolean validate(LoginModel registerModel) {
         boolean isValid = false;

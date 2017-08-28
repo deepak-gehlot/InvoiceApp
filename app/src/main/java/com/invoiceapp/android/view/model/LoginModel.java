@@ -12,8 +12,6 @@ import com.invoiceapp.android.util.Constant;
 
 public class LoginModel extends BaseObservable {
     private String method = Constant.LOGIN_METHOD;
-
-
     private String email_id = "";
     private String password = "";
 
