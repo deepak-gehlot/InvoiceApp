@@ -41,6 +41,7 @@ public class Constant {
 
     public static final String LOGIN_METHOD = "user_login";
     public static final String REGISTRATION_METHOD = "user_signup";
+    public static final String METHOD_BUSINESS_DETAILS = "businessDetail";
 
 
     public static String PATH_PRODUCT_REPORT = "ppp";

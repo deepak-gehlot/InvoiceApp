@@ -5,6 +5,6 @@ package com.invoiceapp.android.dao;
  */
 
 public class Response {
-    public String responseCode;
-    public String responseMessage;
+    public String status;
+    public String message;
 }

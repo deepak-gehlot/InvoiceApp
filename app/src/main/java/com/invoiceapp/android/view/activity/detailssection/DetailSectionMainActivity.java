@@ -1,5 +1,6 @@
 package com.invoiceapp.android.view.activity.detailssection;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -8,9 +9,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.invoiceapp.android.R;
+import com.invoiceapp.android.dao.QueryManager;
+import com.invoiceapp.android.dao.Response;
 import com.invoiceapp.android.databinding.ActivityDetailSectionMainBinding;
+import com.invoiceapp.android.listener.CallbackListener;
+import com.invoiceapp.android.util.PreferenceConnector;
 import com.invoiceapp.android.view.activity.HomeActivity;
 import com.invoiceapp.android.view.fragment.detailsection.BusinessDetailsFragment;
 import com.invoiceapp.android.view.fragment.detailsection.BusinessFinalFragment;
@@ -50,8 +57,7 @@ public class DetailSectionMainActivity extends AppCompatActivity {
                 if (item == 2) {
                     binding.nextTxt.setText("Finish");
                 } else if (item == 3) {
-                    startActivity(new Intent(DetailSectionMainActivity.this, HomeActivity.class));
-                    finish();
+                    switchActivity();
                 }
             }
         });
@@ -82,8 +88,26 @@ public class DetailSectionMainActivity extends AppCompatActivity {
     }
 
     public void switchActivity() {
-        startActivity(new Intent(DetailSectionMainActivity.this, HomeActivity.class).putExtra("item", businessDetailModel));
-        finish();
+        businessDetailModel.setUserID(PreferenceConnector.readString(DetailSectionMainActivity.this, PreferenceConnector.USER_ID, ""));
+        final ProgressDialog progressDialog = ProgressDialog.show(DetailSectionMainActivity.this, "", "saving info...", true, true);
+        String jsonRequest = new Gson().toJson(businessDetailModel);
+        QueryManager.getInstance().postRequest(DetailSectionMainActivity.this, jsonRequest, new CallbackListener() {
+            @Override
+            public void onResult(Exception e, String result) {
+                progressDialog.dismiss();
+                if (result != null && !result.isEmpty()) {
+                    Response response = new Gson().fromJson(result, Response.class);
+                    if (response.status.equals("200")) {
+                        startActivity(new Intent(DetailSectionMainActivity.this, HomeActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(DetailSectionMainActivity.this, getString(R.string.wrong), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(DetailSectionMainActivity.this, getString(R.string.wrong), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

@@ -5,7 +5,9 @@ import android.databinding.Bindable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
 import com.invoiceapp.android.BR;
+import com.invoiceapp.android.util.Constant;
 
 
 /**
@@ -14,18 +16,27 @@ import com.invoiceapp.android.BR;
 
 public class BusinessDetailModel extends BaseObservable implements Parcelable {
 
+    public String method = Constant.METHOD_BUSINESS_DETAILS;
+    @SerializedName("businessName")
     public String businessName = "";
     public String vat = "";
+    @SerializedName("phone")
     public String phone = "";
     public String email = "";
+    @SerializedName("address_1")
     public String address1 = "";
+    @SerializedName("address_2")
     public String address2 = "";
+    @SerializedName("address_3")
     public String address3 = "";
+    @SerializedName("business_industry")
     public String businessIndustry = "";
+    @SerializedName("business_logo")
     public String logo = "";
     public String mobile = "";
     public String fax = "";
     public String website = "";
+    public String userID = "";
 
     @Bindable
     public String getBusinessName() {
@@ -140,6 +151,14 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
         this.website = website;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
     public BusinessDetailModel() {
     }
 
@@ -150,6 +169,7 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.method);
         dest.writeString(this.businessName);
         dest.writeString(this.vat);
         dest.writeString(this.phone);
@@ -162,9 +182,11 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
         dest.writeString(this.mobile);
         dest.writeString(this.fax);
         dest.writeString(this.website);
+        dest.writeString(this.userID);
     }
 
     protected BusinessDetailModel(Parcel in) {
+        this.method = in.readString();
         this.businessName = in.readString();
         this.vat = in.readString();
         this.phone = in.readString();
@@ -177,6 +199,7 @@ public class BusinessDetailModel extends BaseObservable implements Parcelable {
         this.mobile = in.readString();
         this.fax = in.readString();
         this.website = in.readString();
+        this.userID = in.readString();
     }
 
     public static final Creator<BusinessDetailModel> CREATOR = new Creator<BusinessDetailModel>() {

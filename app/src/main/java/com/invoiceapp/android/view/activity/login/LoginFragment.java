@@ -53,7 +53,10 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.setModel(new LoginModel());
+        LoginModel loginModel = new LoginModel();
+        loginModel.setEmail_id("deepak@gmail.com");
+        loginModel.setPassword("123456");
+        binding.setModel(loginModel);
         binding.setFragment(this);
     }
 
@@ -72,6 +75,7 @@ public class LoginFragment extends Fragment {
                     if (loginDao.status.equals("200")) {
                         Utility.showToast(getActivity(), loginDao.message);
                         PreferenceConnector.writeBoolean(getActivity(), PreferenceConnector.IS_LOGIN, true);
+                        PreferenceConnector.writeString(getActivity(), PreferenceConnector.USER_ID, loginDao.result.get(0).id);
                         startActivity(new Intent(getActivity(), GetStartedActivity.class));
                         getActivity().finish();
                     } else {
