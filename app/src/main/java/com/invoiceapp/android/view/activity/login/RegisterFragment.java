@@ -61,10 +61,11 @@ public class RegisterFragment extends Fragment {
             public void onResult(Exception e, String result) {
                 progressDialog.dismiss();
                 if (result != null && !result.isEmpty()) {
+                    binding.setModel(new RegisterModel());
                     LoginDao loginDao = new Gson().fromJson(result, LoginDao.class);
                     if (loginDao.status.equals("200")) {
                         Utility.showToast(getActivity(), "Register successfully.");
-                        showMessage("You have successfully Registered.\nPlease verify your email and Login.");
+                        showMessage("You have successfully Registered.\nPlease verify your email before Login.");
                     } else {
                         showMessage(loginDao.result.get(0).msg);
                         Utility.showToast(getActivity(), loginDao.result.get(0).msg);

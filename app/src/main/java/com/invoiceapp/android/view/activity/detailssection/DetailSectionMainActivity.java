@@ -34,7 +34,7 @@ public class DetailSectionMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_section_main);
-        businessDetailModel = new BusinessDetailModel();
+        businessDetailModel = getDataFromBundle();
 
         binding.backImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +85,10 @@ public class DetailSectionMainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private BusinessDetailModel getDataFromBundle() {
+        return getIntent().getExtras().getParcelable("item");
     }
 
     public void switchActivity() {

@@ -25,6 +25,7 @@ import com.invoiceapp.android.util.PreferenceConnector;
 import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.util.ValidationTemplate;
 import com.invoiceapp.android.view.activity.GetStartedActivity;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 import com.invoiceapp.android.view.model.LoginModel;
 
 import org.json.JSONException;
@@ -54,7 +55,7 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         LoginModel loginModel = new LoginModel();
-        loginModel.setEmail_id("deepak@gmail.com");
+        loginModel.setEmail_id("1deepakgehlot@gmail.com");
         loginModel.setPassword("123456");
         binding.setModel(loginModel);
         binding.setFragment(this);
@@ -71,12 +72,25 @@ public class LoginFragment extends Fragment {
             public void onResult(Exception e, String result) {
                 progressDialog.dismiss();
                 if (result != null && !result.isEmpty()) {
+                    binding.setModel(new LoginModel());
                     LoginDao loginDao = new Gson().fromJson(result, LoginDao.class);
                     if (loginDao.status.equals("200")) {
                         Utility.showToast(getActivity(), loginDao.message);
                         PreferenceConnector.writeBoolean(getActivity(), PreferenceConnector.IS_LOGIN, true);
                         PreferenceConnector.writeString(getActivity(), PreferenceConnector.USER_ID, loginDao.result.get(0).id);
-                        startActivity(new Intent(getActivity(), GetStartedActivity.class));
+                        BusinessDetailModel businessDetailModel = new BusinessDetailModel();
+                        businessDetailModel.setUserID(loginDao.result.get(0).id);
+                        businessDetailModel.setBusinessName(loginDao.result.get(0).businessName);
+                        businessDetailModel.setBusinessIndustry(loginDao.result.get(0).businessIndustry);
+                        businessDetailModel.setLogo(loginDao.result.get(0).businessLogo);
+                        businessDetailModel.setAddress1(loginDao.result.get(0).address1);
+                        businessDetailModel.setAddress2(loginDao.result.get(0).address2);
+                        businessDetailModel.setAddress3(loginDao.result.get(0).address3);
+                        businessDetailModel.setEmail(loginDao.result.get(0).email);
+                        businessDetailModel.setPhone(loginDao.result.get(0).phone);
+                        Intent intent = new Intent(getActivity(), GetStartedActivity.class);
+                        intent.putExtra("item", businessDetailModel);
+                        startActivity(intent);
                         getActivity().finish();
                     } else {
                         showMessage(loginDao.result.get(0).msg);
@@ -88,7 +102,7 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    public void onForgotPasswordClick(LoginModel loginModel) {
+    public void onForgotPasswordClick(final LoginModel loginModel) {
         Extension extension = Extension.getInstance();
         if (loginModel.getEmail_id().isEmpty()) {
             Toast.makeText(getActivity(), "Enter your registered email.", Toast.LENGTH_SHORT).show();
@@ -98,19 +112,20 @@ public class LoginFragment extends Fragment {
             try {
                 final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "", "wait...", false, false);
                 JSONStringer jsonStringer = new JSONStringer().object()
-                        .key("email").value("")
-                        .key("method").value("")
+                        .key("email_id").value(loginModel.getEmail_id())
+                        .key("method").value("forgotPassword")
                         .endObject();
                 QueryManager.getInstance().postRequest(getActivity(), jsonStringer.toString(), new CallbackListener() {
                     @Override
                     public void onResult(Exception e, String result) {
                         progressDialog.dismiss();
                         if (result != null && !result.isEmpty()) {
+                            binding.setModel(new LoginModel());
                             ForgotPasswordDao forgotPasswordDao = new Gson().fromJson(result, ForgotPasswordDao.class);
                             if (forgotPasswordDao.status.equals("200")) {
-                                showMessage(forgotPasswordDao.message);
+                                showMessage("Please check you email.");
                             } else {
-                                showMessage(forgotPasswordDao.message);
+                                showMessage(forgotPasswordDao.result.msg);
                             }
                         } else {
                             Toast.makeText(getActivity(), getString(R.string.wrong), Toast.LENGTH_SHORT).show();

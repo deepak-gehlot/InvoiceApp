@@ -75,7 +75,11 @@ public class BusinessLogoFragment extends Fragment {
 
         if (!businessDetailModel.getLogo().isEmpty()) {
             AQuery aQuery = new AQuery(getActivity());
-            aQuery.id(binding.imageLogo).image(Utility.decodeImage(businessDetailModel.getLogo()));
+            if (businessDetailModel.getLogo().contains("http")) {
+                aQuery.id(binding.imageLogo).image(businessDetailModel.getLogo(), true, true, 200, R.drawable.ic_client);
+            } else {
+                aQuery.id(binding.imageLogo).image(Utility.decodeImage(businessDetailModel.getLogo()));
+            }
         }
     }
 

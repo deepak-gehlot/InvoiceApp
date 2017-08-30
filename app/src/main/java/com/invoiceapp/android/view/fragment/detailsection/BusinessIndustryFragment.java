@@ -2,6 +2,7 @@ package com.invoiceapp.android.view.fragment.detailsection;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,8 @@ import com.invoiceapp.android.adapter.IndustryListRowAdapter;
 import com.invoiceapp.android.databinding.FragmentBusinessIndustryBinding;
 import com.invoiceapp.android.listener.OnItemClickListener;
 import com.invoiceapp.android.view.model.BusinessDetailModel;
+
+import java.util.Arrays;
 
 public class BusinessIndustryFragment extends Fragment {
 
@@ -53,7 +56,7 @@ public class BusinessIndustryFragment extends Fragment {
 
         final String[] industryArray = getResources().getStringArray(R.array.industry_array);
         binding.industryList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        IndustryListRowAdapter adapter = new IndustryListRowAdapter(getActivity(), industryArray);
+        final IndustryListRowAdapter adapter = new IndustryListRowAdapter(getActivity(), industryArray);
         binding.industryList.setAdapter(adapter);
         adapter.onItemClick(new OnItemClickListener() {
             @Override
@@ -61,7 +64,13 @@ public class BusinessIndustryFragment extends Fragment {
                 businessDetailModel.setBusinessIndustry(industryArray[position]);
             }
         });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int pos = Arrays.asList(industryArray).indexOf(businessDetailModel.getBusinessIndustry());
+                adapter.setSelectedPos(pos);
+            }
+        }, 200);
     }
-
-
 }

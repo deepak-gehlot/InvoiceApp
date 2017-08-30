@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentEditBinding;
-import com.invoiceapp.android.view.ProductListAllPDF;
 import com.invoiceapp.android.view.activity.AddItemActivity;
 import com.invoiceapp.android.view.activity.CreateNewClient;
 import com.invoiceapp.android.view.activity.DiscountActivity;
@@ -20,8 +19,6 @@ import com.invoiceapp.android.view.activity.InvoiceInfoActivity;
 import com.invoiceapp.android.view.activity.ShippingInfoActivity;
 import com.invoiceapp.android.view.activity.TaxesActivity;
 import com.invoiceapp.android.view.activity.businessdetails.BusinessDetailsActivity;
-
-import static com.invoiceapp.android.view.activity.createinvoice.CreateInvoiceActivity.model;
 
 public class EditFragment extends Fragment {
 
@@ -82,7 +79,6 @@ public class EditFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ProductListAllPDF productListAllPDF = new ProductListAllPDF();
-        productListAllPDF.createPDF(getActivity(), model, "onetwo");
+
     }
 }

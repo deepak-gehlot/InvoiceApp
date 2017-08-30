@@ -2,13 +2,14 @@ package com.invoiceapp.android.view.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.ActivityGetStartedBinding;
 import com.invoiceapp.android.view.activity.detailssection.DetailSectionMainActivity;
 import com.invoiceapp.android.view.activity.login.LoginActivity;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 
 public class GetStartedActivity extends AppCompatActivity {
 
@@ -20,7 +21,8 @@ public class GetStartedActivity extends AppCompatActivity {
     }
 
     public void onGetStartedClick() {
-        startActivity(new Intent(GetStartedActivity.this, DetailSectionMainActivity.class));
+        BusinessDetailModel businessDetailModel = getIntent().getExtras().getParcelable("item");
+        startActivity(new Intent(GetStartedActivity.this, DetailSectionMainActivity.class).putExtra("item", businessDetailModel));
         finish();
     }
 

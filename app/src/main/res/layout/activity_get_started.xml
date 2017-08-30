@@ -75,6 +75,7 @@
                 android:lines="1"
                 android:onClick="@{()->activity.onAlreadyAccountClick()}"
                 android:padding="16dp"
+                android:visibility="invisible"
                 android:text="@string/already_account"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_small" />

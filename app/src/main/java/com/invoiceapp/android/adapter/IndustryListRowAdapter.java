@@ -73,4 +73,12 @@ public class IndustryListRowAdapter extends RecyclerView.Adapter<IndustryListRow
     public void onItemClick(OnItemClickListener listener) {
         this.listener = listener;
     }
+
+    public void setSelectedPos(int position) {
+        listener.onClick(position);
+        int oldPos = selectedPos;
+        selectedPos = position;
+        notifyItemChanged(oldPos);
+        notifyItemChanged(position);
+    }
 }
