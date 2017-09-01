@@ -145,7 +145,7 @@
     <string name="paid">PAID</string>
     <string name="title_activity_create_invoice">Invoice</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_business_details">BusinessDetailsActivity</string>
+    <string name="title_activity_business_details">Business Details</string>
     <string name="action_settings">Settings</string>
     <string name="action_remove_photo">Remove Photo</string>
     <!--invoice main fragment end-->

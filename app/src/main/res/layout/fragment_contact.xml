@@ -68,6 +68,7 @@
                     android:layout_height="wrap_content"
                     android:hint="FAX"
                     android:imeOptions="actionNext"
+                    android:inputType="number"
                     android:lines="1"
                     android:text="@={model.fax}"
                     />
@@ -107,6 +108,7 @@
                     android:lines="1"
                     android:text="@={model.website}"/>
             </android.support.design.widget.TextInputLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>

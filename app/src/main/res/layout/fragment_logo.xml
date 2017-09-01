@@ -11,7 +11,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="@{()->fragment.onSelectLogoClick()}"
         tools:context="com.invoiceapp.android.view.fragment.businessdetails.LogoFragment">
 
         <ImageView
@@ -20,5 +19,18 @@
             android:layout_height="250dp"
             android:layout_centerInParent="true"
             android:src="@drawable/ic_photo_camera"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:background="@color/orange"
+            android:onClick="@{()->fragment.onSelectLogoClick()}"
+            android:text="Select Logo"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
     </RelativeLayout>
 </layout>

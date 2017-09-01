@@ -81,7 +81,7 @@ public class LogoFragment extends Fragment {
             AQuery aQuery = new AQuery(getActivity());
             if (model.getLogo().contains("http")) {
                 aQuery.id(binding.imageView).image(model.getLogo(), true, true, 200, R.drawable.ic_client);
-            } else {
+            } else if (!model.getLogo().isEmpty()) {
                 aQuery.id(binding.imageView).image(Utility.decodeImage(model.getLogo()));
             }
         }

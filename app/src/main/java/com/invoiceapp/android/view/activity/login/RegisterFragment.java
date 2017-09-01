@@ -2,6 +2,7 @@ package com.invoiceapp.android.view.activity.login;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,8 +20,11 @@ import com.invoiceapp.android.databinding.FragmentRegisterBinding;
 import com.invoiceapp.android.listener.CallbackListener;
 import com.invoiceapp.android.listener.DialogListener;
 import com.invoiceapp.android.util.Extension;
+import com.invoiceapp.android.util.PreferenceConnector;
 import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.util.ValidationTemplate;
+import com.invoiceapp.android.view.activity.GetStartedActivity;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 import com.invoiceapp.android.view.model.RegisterModel;
 
 public class RegisterFragment extends Fragment {
@@ -61,14 +65,28 @@ public class RegisterFragment extends Fragment {
             public void onResult(Exception e, String result) {
                 progressDialog.dismiss();
                 if (result != null && !result.isEmpty()) {
-                    binding.setModel(new RegisterModel());
-                    LoginDao loginDao = new Gson().fromJson(result, LoginDao.class);
-                    if (loginDao.status.equals("200")) {
-                        Utility.showToast(getActivity(), "Register successfully.");
-                        showMessage("You have successfully Registered.\nPlease verify your email before Login.");
-                    } else {
-                        showMessage(loginDao.result.get(0).msg);
-                        Utility.showToast(getActivity(), loginDao.result.get(0).msg);
+                    try {
+                        binding.setModel(new RegisterModel());
+                        LoginDao loginDao = new Gson().fromJson(result, LoginDao.class);
+                        if (loginDao.status.equals("200")) {
+                            PreferenceConnector.writeBoolean(getActivity(), PreferenceConnector.IS_LOGIN, true);
+                            PreferenceConnector.writeString(getActivity(), PreferenceConnector.USER_ID, loginDao.result.get(0).id);
+                            Utility.showToast(getActivity(), "Register successfully.");
+                            // showMessage("You have successfully Registered.\nPlease verify your email before Login.");
+                            Intent intent = new Intent(getActivity(), GetStartedActivity.class);
+                            intent.putExtra("item", new BusinessDetailModel());
+                            startActivity(intent);
+                        } else {
+                            if (loginDao.result != null && loginDao.result.size() != 0) {
+                                showMessage(loginDao.result.get(0).msg);
+                                Utility.showToast(getActivity(), loginDao.result.get(0).msg);
+                            } else {
+                                Toast.makeText(getActivity(), getString(R.string.wrong), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                        Toast.makeText(getActivity(), getString(R.string.wrong), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getActivity(), getString(R.string.wrong), Toast.LENGTH_SHORT).show();
