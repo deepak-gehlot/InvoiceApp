@@ -1,5 +1,6 @@
 package com.invoiceapp.android.view.activity.businessdetails;
 
+import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,30 +13,44 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.invoiceapp.android.R;
+import com.invoiceapp.android.dao.QueryManager;
+import com.invoiceapp.android.dao.Response;
 import com.invoiceapp.android.databinding.ActivityBusinessDetailsBinding;
+import com.invoiceapp.android.listener.CallbackListener;
+import com.invoiceapp.android.util.PreferenceConnector;
 import com.invoiceapp.android.view.fragment.businessdetails.ContactFragment;
 import com.invoiceapp.android.view.fragment.businessdetails.GeneralDetailFragment;
 import com.invoiceapp.android.view.fragment.businessdetails.LogoFragment;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 
-import static com.invoiceapp.android.view.activity.createinvoice.CreateInvoiceActivity.model;
+import io.fabric.sdk.android.Fabric;
+
 
 public class BusinessDetailsActivity extends AppCompatActivity {
 
     private ActivityBusinessDetailsBinding binding;
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
+    private BusinessDetailModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         binding = DataBindingUtil.setContentView(this, R.layout.activity_business_details);
 
         setSupportActionBar(binding.toolbar);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         binding.viewPager.setAdapter(mSectionsPagerAdapter);
         binding.tabs.setupWithViewPager(binding.viewPager);
+
+        String details = PreferenceConnector.readString(BusinessDetailsActivity.this, PreferenceConnector.BUSINESS_DETAILS, "");
+        model = new Gson().fromJson(details, BusinessDetailModel.class);
     }
 
 
@@ -60,6 +75,38 @@ public class BusinessDetailsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        String json = new Gson().toJson(model);
+        final ProgressDialog progressDialog = ProgressDialog.show(BusinessDetailsActivity.this, "", "", false, false);
+        PreferenceConnector.writeString(BusinessDetailsActivity.this, PreferenceConnector.BUSINESS_DETAILS, json);
+        QueryManager.getInstance().postRequest(BusinessDetailsActivity.this, json, new CallbackListener() {
+            @Override
+            public void onResult(Exception e, String result) {
+                progressDialog.dismiss();
+                if (e == null && result != null && !result.isEmpty()) {
+                    try {
+                        Response response = new Gson().fromJson(result, Response.class);
+                        if (response.status.equals("200")) {
+                            finish();
+                        } else {
+                            Toast.makeText(BusinessDetailsActivity.this, getString(R.string.wrong), Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    } catch (JsonSyntaxException e1) {
+                        e1.printStackTrace();
+                        Toast.makeText(BusinessDetailsActivity.this, getString(R.string.wrong), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                } else {
+                    finish();
+                    Toast.makeText(BusinessDetailsActivity.this, getString(R.string.wrong), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 
     /**
      * A placeholder fragment containing a simple view.

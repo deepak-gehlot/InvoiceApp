@@ -1,6 +1,5 @@
 package com.invoiceapp.android.view.fragment.createinvoice;
 
-
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -21,7 +20,6 @@ import com.invoiceapp.android.view.activity.TaxesActivity;
 import com.invoiceapp.android.view.activity.businessdetails.BusinessDetailsActivity;
 
 public class EditFragment extends Fragment {
-
 
     public EditFragment() {
         // Required empty public constructor

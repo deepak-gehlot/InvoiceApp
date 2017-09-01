@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.dao.QueryManager;
 import com.invoiceapp.android.dao.Response;
@@ -25,6 +27,8 @@ import com.invoiceapp.android.view.fragment.detailsection.BusinessIndustryFragme
 import com.invoiceapp.android.view.fragment.detailsection.BusinessLogoFragment;
 import com.invoiceapp.android.view.model.BusinessDetailModel;
 
+import io.fabric.sdk.android.Fabric;
+
 public class DetailSectionMainActivity extends AppCompatActivity {
 
     private ActivityDetailSectionMainBinding binding;
@@ -33,6 +37,7 @@ public class DetailSectionMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_section_main);
         businessDetailModel = getDataFromBundle();
 
@@ -94,17 +99,23 @@ public class DetailSectionMainActivity extends AppCompatActivity {
     public void switchActivity() {
         businessDetailModel.setUserID(PreferenceConnector.readString(DetailSectionMainActivity.this, PreferenceConnector.USER_ID, ""));
         final ProgressDialog progressDialog = ProgressDialog.show(DetailSectionMainActivity.this, "", "saving info...", true, true);
-        String jsonRequest = new Gson().toJson(businessDetailModel);
+        final String jsonRequest = new Gson().toJson(businessDetailModel);
         QueryManager.getInstance().postRequest(DetailSectionMainActivity.this, jsonRequest, new CallbackListener() {
             @Override
             public void onResult(Exception e, String result) {
                 progressDialog.dismiss();
                 if (result != null && !result.isEmpty()) {
-                    Response response = new Gson().fromJson(result, Response.class);
-                    if (response.status.equals("200")) {
-                        startActivity(new Intent(DetailSectionMainActivity.this, HomeActivity.class));
-                        finish();
-                    } else {
+                    try {
+                        Response response = new Gson().fromJson(result, Response.class);
+                        if (response.status.equals("200")) {
+                            PreferenceConnector.writeString(DetailSectionMainActivity.this, PreferenceConnector.BUSINESS_DETAILS, jsonRequest);
+                            startActivity(new Intent(DetailSectionMainActivity.this, HomeActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(DetailSectionMainActivity.this, getString(R.string.wrong), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JsonSyntaxException e1) {
+                        e1.printStackTrace();
                         Toast.makeText(DetailSectionMainActivity.this, getString(R.string.wrong), Toast.LENGTH_SHORT).show();
                     }
                 } else {

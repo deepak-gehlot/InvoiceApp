@@ -26,24 +26,28 @@ import com.invoiceapp.android.listener.PermissionListener;
 import com.invoiceapp.android.view.fragment.createinvoice.EditFragment;
 import com.invoiceapp.android.view.fragment.createinvoice.HistoryInvoiceFragment;
 import com.invoiceapp.android.view.fragment.createinvoice.PreviewInvoiceFragment;
-import com.invoiceapp.android.view.model.CreateInvoiceModel;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 
 import java.io.File;
 
 import static com.invoiceapp.android.util.Constant.PATH_PRODUCT_REPORT;
 import static com.invoiceapp.android.util.Constant.reportName;
-
+/*{"method":"businessDetail","userID":"1","businessName":"Mishra","vat":"20",
+"phone":"9770789763","fax":"28350","website":"www.marvellousinstitute.com",
+"address_1":"Indore","address_2":"Bhopal","address_3":"Gwalior","business_industry":"test",
+"business_logo":"aa.png"}
+*/
 public class CreateInvoiceActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ActivityCreateInvoiceBinding binding;
-    public static CreateInvoiceModel model;
+    public BusinessDetailModel model;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_invoice);
         setTitleActions();
-        model = new CreateInvoiceModel("", "", "", "", "", "", "", "", "", "", null);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         binding.container.setAdapter(mSectionsPagerAdapter);
         binding.tabs.setupWithViewPager(binding.container);
@@ -56,7 +60,6 @@ public class CreateInvoiceActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
 
 
             }

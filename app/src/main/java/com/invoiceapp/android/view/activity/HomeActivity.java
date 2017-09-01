@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
 
+import com.crashlytics.android.Crashlytics;
 import com.github.jksiezni.permissive.PermissionsGrantedListener;
 import com.github.jksiezni.permissive.PermissionsRefusedListener;
 import com.github.jksiezni.permissive.Permissive;
@@ -25,6 +26,8 @@ import com.invoiceapp.android.view.fragment.myClients.MyClientListFragment;
 import com.invoiceapp.android.view.fragment.myItems.MyItemsListFragment;
 import com.invoiceapp.android.view.fragment.settings.SettingsMainFragment;
 
+import io.fabric.sdk.android.Fabric;
+
 public class HomeActivity extends AppCompatActivity {
 
     private int navigationIcons[] = {R.drawable.ic_invoices, R.drawable.ic_estimates, R.drawable.ic_report, R.drawable.ic_my_items,
@@ -34,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
 
         setNavigationList();

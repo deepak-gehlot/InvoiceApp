@@ -68,8 +68,12 @@ public class BusinessIndustryFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                int pos = Arrays.asList(industryArray).indexOf(businessDetailModel.getBusinessIndustry());
-                adapter.setSelectedPos(pos);
+                if (businessDetailModel.getBusinessIndustry() != null && !businessDetailModel.getBusinessIndustry().isEmpty()) {
+                    int pos = Arrays.asList(industryArray).indexOf(businessDetailModel.getBusinessIndustry());
+                    if (pos > -1) {
+                        adapter.setSelectedPos(pos);
+                    }
+                }
             }
         }, 200);
     }

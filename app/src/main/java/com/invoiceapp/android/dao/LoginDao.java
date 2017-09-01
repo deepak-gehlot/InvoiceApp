@@ -34,9 +34,10 @@ public class LoginDao {
         public String email = "";
         public String businessName = "";
         public String phone = "";
+        public String mobile = "";
         @SerializedName("address_1")
         public String address1 = "";
-        @SerializedName("address_2 ")
+        @SerializedName("address_2")
         public String address2 = "";
         @SerializedName("address_3")
         public String address3 = "";
@@ -44,5 +45,8 @@ public class LoginDao {
         public String businessIndustry = "";
         @SerializedName("business_logo")
         public String businessLogo = "";
+        public String fax;
+        public String vat;
+        public String website;
     }
 }

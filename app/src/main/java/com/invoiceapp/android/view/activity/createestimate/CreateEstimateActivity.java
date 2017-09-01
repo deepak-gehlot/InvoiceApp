@@ -13,11 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.ActivityCreateInvoiceBinding;
 import com.invoiceapp.android.view.fragment.createinvoice.EditFragment;
 import com.invoiceapp.android.view.fragment.createinvoice.HistoryInvoiceFragment;
 import com.invoiceapp.android.view.fragment.createinvoice.PreviewInvoiceFragment;
+
+import io.fabric.sdk.android.Fabric;
 
 public class CreateEstimateActivity extends AppCompatActivity {
 
@@ -28,6 +31,7 @@ public class CreateEstimateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_invoice);
         setTitleActions();
 

@@ -22,6 +22,8 @@ public class PreferenceConnector {
     public static final String DEVICE_TOKEN = "device_token";
     public static final String IS_LOGIN = "is_login";
 
+    public static final String BUSINESS_DETAILS = "business_details";
+
 
     public static void writeBoolean(Context context, String key, boolean value) {
         getEditor(context).putBoolean(key, value).commit();

@@ -5,91 +5,113 @@
 
         <variable
             name="model"
-            type="com.invoiceapp.android.view.model.CreateInvoiceModel"/>
+            type="com.invoiceapp.android.view.model.BusinessDetailModel"/>
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
-        tools:context="com.invoiceapp.android.view.fragment.businessdetails.ContactFragment">
+        android:fillViewport="true">
 
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel"
-            >
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context="com.invoiceapp.android.view.fragment.businessdetails.ContactFragment">
 
-            <EditText
-                android:id="@+id/phoneNumberEdt"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:text="@={model.phoneNumber}"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+                <EditText
+                    android:id="@+id/phoneNumberEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:text="@={model.phone}"/>
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/mobileNumberEdt"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mobile Number"
-                android:text="@={model.mobileNumber}"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <EditText
+                    android:id="@+id/mobileNumberEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile Number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:text="@={model.mobile}"/>
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel">
-
-            <EditText
-                android:id="@+id/faxEdt"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="FAX"
-                android:text="@={model.fax}"
-                />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <EditText
+                    android:id="@+id/faxEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="FAX"
+                    android:imeOptions="actionNext"
+                    android:lines="1"
+                    android:text="@={model.fax}"
+                    />
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel">
-
-            <EditText
-                android:id="@+id/emailEdt"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:text="@={model.email}"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <EditText
+                    android:id="@+id/emailEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:text="@={model.email}"/>
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel">
-
-            <EditText
-                android:id="@+id/websiteEdt"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Website"
-                android:text="@={model.website}"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
 
-        <!--//phone mobile fax email website-->
+                <EditText
+                    android:id="@+id/websiteEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Website"
+                    android:imeOptions="actionDone"
+                    android:lines="1"
+                    android:text="@={model.website}"/>
+            </android.support.design.widget.TextInputLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+            <!--//phone mobile fax email website-->
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </layout>

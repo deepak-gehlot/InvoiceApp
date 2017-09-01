@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentContactBinding;
-import com.invoiceapp.android.view.model.CreateInvoiceModel;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 
 public class ContactFragment extends Fragment {
 
@@ -19,9 +19,9 @@ public class ContactFragment extends Fragment {
     }
 
     private FragmentContactBinding binding;
-    private CreateInvoiceModel businessDetailModel;
+    private BusinessDetailModel businessDetailModel;
 
-    public static ContactFragment newInstance(CreateInvoiceModel businessDetailModel) {
+    public static ContactFragment newInstance(BusinessDetailModel businessDetailModel) {
         Bundle args = new Bundle();
         args.putParcelable("item", businessDetailModel);
         ContactFragment fragment = new ContactFragment();

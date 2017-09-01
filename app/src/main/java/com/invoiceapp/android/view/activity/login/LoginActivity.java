@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.invoiceapp.android.view.model.FragmentModel;
+import com.crashlytics.android.Crashlytics;
 import com.invoiceapp.android.R;
-import com.invoiceapp.android.view.activity.SplashActivity;
 import com.invoiceapp.android.adapter.CustomFragmentPagerAdapter;
 import com.invoiceapp.android.databinding.ActivityLoginBinding;
+import com.invoiceapp.android.view.activity.SplashActivity;
+import com.invoiceapp.android.view.model.FragmentModel;
 
 import java.util.ArrayList;
+
+import io.fabric.sdk.android.Fabric;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         setToolbar();
         getDataFromBundle();

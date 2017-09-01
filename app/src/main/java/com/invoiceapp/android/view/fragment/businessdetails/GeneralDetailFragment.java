@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentGeneralDetailBinding;
-import com.invoiceapp.android.view.model.CreateInvoiceModel;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,9 +24,9 @@ public class GeneralDetailFragment extends Fragment {
     }
 
     private FragmentGeneralDetailBinding binding;
-    private CreateInvoiceModel businessDetailModel;
+    private BusinessDetailModel businessDetailModel;
 
-    public static GeneralDetailFragment newInstance(CreateInvoiceModel businessDetailModel) {
+    public static GeneralDetailFragment newInstance(BusinessDetailModel businessDetailModel) {
 
         Bundle args = new Bundle();
         args.putParcelable("item", businessDetailModel);

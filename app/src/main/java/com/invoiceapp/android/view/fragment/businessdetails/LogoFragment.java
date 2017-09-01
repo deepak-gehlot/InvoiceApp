@@ -21,13 +21,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.androidquery.AQuery;
 import com.github.jksiezni.permissive.PermissionsGrantedListener;
 import com.github.jksiezni.permissive.PermissionsRefusedListener;
 import com.github.jksiezni.permissive.Permissive;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentLogoBinding;
 import com.invoiceapp.android.util.Utility;
-import com.invoiceapp.android.view.model.CreateInvoiceModel;
+import com.invoiceapp.android.view.model.BusinessDetailModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +36,6 @@ import java.io.IOException;
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
 
-import static com.invoiceapp.android.view.activity.createinvoice.CreateInvoiceActivity.model;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,8 +48,9 @@ public class LogoFragment extends Fragment {
     }
 
     private FragmentLogoBinding binding;
+    private BusinessDetailModel model;
 
-    public static LogoFragment newInstance(CreateInvoiceModel businessDetailModel) {
+    public static LogoFragment newInstance(BusinessDetailModel businessDetailModel) {
 
         Bundle args = new Bundle();
         args.putParcelable("item", businessDetailModel);
@@ -58,7 +59,11 @@ public class LogoFragment extends Fragment {
         return fragment;
     }
 
-
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        model = getArguments().getParcelable("item");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,6 +76,15 @@ public class LogoFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.setFragment(this);
+
+        if (!model.getLogo().isEmpty()) {
+            AQuery aQuery = new AQuery(getActivity());
+            if (model.getLogo().contains("http")) {
+                aQuery.id(binding.imageView).image(model.getLogo(), true, true, 200, R.drawable.ic_client);
+            } else {
+                aQuery.id(binding.imageView).image(Utility.decodeImage(model.getLogo()));
+            }
+        }
     }
 
     public void onSelectLogoClick() {
@@ -157,7 +171,7 @@ public class LogoFragment extends Fragment {
                                     new Thread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            model.setLogo(bitmap);
+                                            model.setLogo(Utility.encodeImage(bitmap));
                                         }
                                     }).start();
                                 }

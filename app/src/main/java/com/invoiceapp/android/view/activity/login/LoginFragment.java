@@ -25,6 +25,7 @@ import com.invoiceapp.android.util.PreferenceConnector;
 import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.util.ValidationTemplate;
 import com.invoiceapp.android.view.activity.GetStartedActivity;
+import com.invoiceapp.android.view.activity.HomeActivity;
 import com.invoiceapp.android.view.model.BusinessDetailModel;
 import com.invoiceapp.android.view.model.LoginModel;
 
@@ -79,18 +80,32 @@ public class LoginFragment extends Fragment {
                         PreferenceConnector.writeBoolean(getActivity(), PreferenceConnector.IS_LOGIN, true);
                         PreferenceConnector.writeString(getActivity(), PreferenceConnector.USER_ID, loginDao.result.get(0).id);
                         BusinessDetailModel businessDetailModel = new BusinessDetailModel();
-                        businessDetailModel.setUserID(loginDao.result.get(0).id);
-                        businessDetailModel.setBusinessName(loginDao.result.get(0).businessName);
-                        businessDetailModel.setBusinessIndustry(loginDao.result.get(0).businessIndustry);
-                        businessDetailModel.setLogo(loginDao.result.get(0).businessLogo);
-                        businessDetailModel.setAddress1(loginDao.result.get(0).address1);
-                        businessDetailModel.setAddress2(loginDao.result.get(0).address2);
-                        businessDetailModel.setAddress3(loginDao.result.get(0).address3);
-                        businessDetailModel.setEmail(loginDao.result.get(0).email);
-                        businessDetailModel.setPhone(loginDao.result.get(0).phone);
-                        Intent intent = new Intent(getActivity(), GetStartedActivity.class);
-                        intent.putExtra("item", businessDetailModel);
-                        startActivity(intent);
+                        if (loginDao.result != null && loginDao.result.size() != 0) {
+                            businessDetailModel.setUserID(loginDao.result.get(0).id);
+                            businessDetailModel.setBusinessName(loginDao.result.get(0).businessName);
+                            businessDetailModel.setBusinessIndustry(loginDao.result.get(0).businessIndustry);
+                            businessDetailModel.setLogo(loginDao.result.get(0).businessLogo);
+                            businessDetailModel.setAddress1(loginDao.result.get(0).address1);
+                            businessDetailModel.setAddress2(loginDao.result.get(0).address2);
+                            businessDetailModel.setAddress3(loginDao.result.get(0).address3);
+                            businessDetailModel.setEmail(loginDao.result.get(0).email);
+                            businessDetailModel.setPhone(loginDao.result.get(0).phone);
+                            businessDetailModel.setMobile(loginDao.result.get(0).mobile);
+                            businessDetailModel.setVat(loginDao.result.get(0).vat);
+                            businessDetailModel.setFax(loginDao.result.get(0).fax);
+                            businessDetailModel.setWebsite(loginDao.result.get(0).website);
+                        }
+                        if (businessDetailModel.getBusinessName().isEmpty() && businessDetailModel.getBusinessIndustry().isEmpty()
+                                && businessDetailModel.getEmail().isEmpty()) {
+                            Intent intent = new Intent(getActivity(), GetStartedActivity.class);
+                            intent.putExtra("item", businessDetailModel);
+                            startActivity(intent);
+                        } else {
+                            String jsonDetail = new Gson().toJson(businessDetailModel);
+                            PreferenceConnector.writeString(getActivity(), PreferenceConnector.BUSINESS_DETAILS, jsonDetail);
+                            Intent intent = new Intent(getActivity(), HomeActivity.class);
+                            startActivity(intent);
+                        }
                         getActivity().finish();
                     } else {
                         showMessage(loginDao.result.get(0).msg);
