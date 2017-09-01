@@ -62,7 +62,7 @@ public class RegisterFragment extends Fragment {
         String jsonRequest = new Gson().toJson(loginModel);
         QueryManager.getInstance().postRequest(getActivity(), jsonRequest, new CallbackListener() {
             @Override
-            public void onResult(Exception e, String result) {
+            public void onResult(Exception e, String result) {//{"message":"Success","result":[{"messages":"Please Verify Your Email. after verify you can login","userID":10,"email_id":"5t@g.com"}],"status":"200"}
                 progressDialog.dismiss();
                 if (result != null && !result.isEmpty()) {
                     try {
@@ -76,6 +76,7 @@ public class RegisterFragment extends Fragment {
                             Intent intent = new Intent(getActivity(), GetStartedActivity.class);
                             intent.putExtra("item", new BusinessDetailModel());
                             startActivity(intent);
+                            getActivity().finish();
                         } else {
                             if (loginDao.result != null && loginDao.result.size() != 0) {
                                 showMessage(loginDao.result.get(0).msg);

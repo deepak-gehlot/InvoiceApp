@@ -50,7 +50,11 @@ public class BusinessDetailsActivity extends AppCompatActivity {
         binding.tabs.setupWithViewPager(binding.viewPager);
 
         String details = PreferenceConnector.readString(BusinessDetailsActivity.this, PreferenceConnector.BUSINESS_DETAILS, "");
-        model = new Gson().fromJson(details, BusinessDetailModel.class);
+        if (details.isEmpty()) {
+            model = new BusinessDetailModel();
+        } else {
+            model = new Gson().fromJson(details, BusinessDetailModel.class);
+        }
     }
 
 
