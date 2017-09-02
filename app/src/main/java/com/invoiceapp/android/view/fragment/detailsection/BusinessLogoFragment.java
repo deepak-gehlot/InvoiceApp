@@ -5,13 +5,10 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -26,11 +23,9 @@ import com.github.jksiezni.permissive.PermissionsRefusedListener;
 import com.github.jksiezni.permissive.Permissive;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentBusinessLogoBinding;
-import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.view.model.BusinessDetailModel;
 
 import java.io.File;
-import java.io.IOException;
 
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
@@ -78,7 +73,9 @@ public class BusinessLogoFragment extends Fragment {
             if (businessDetailModel.getLogo().contains("http")) {
                 aQuery.id(binding.imageLogo).image(businessDetailModel.getLogo(), true, true, 200, R.drawable.ic_client);
             } else {
-                aQuery.id(binding.imageLogo).image(Utility.decodeImage(businessDetailModel.getLogo()));
+                String uri = businessDetailModel.getLogo();
+                File file = new File(uri);
+                aQuery.id(binding.imageLogo).image(file, 300);
             }
         }
     }
@@ -147,6 +144,8 @@ public class BusinessLogoFragment extends Fragment {
         }).execute(getActivity());
     }
 
+    AQuery aQuery = new AQuery(getActivity());
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -154,7 +153,10 @@ public class BusinessLogoFragment extends Fragment {
             @Override
             public void onImagePicked(final File imageFile, EasyImage.ImageSource source, int type) {
                 final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "", "loading image...", false, false);
-                new Thread(new Runnable() {
+                aQuery.id(binding.imageLogo).image(imageFile, 300);
+                businessDetailModel.setLogo(Uri.fromFile(imageFile).getPath());
+                progressDialog.dismiss();
+               /* new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
@@ -182,7 +184,7 @@ public class BusinessLogoFragment extends Fragment {
                             });
                         }
                     }
-                }).start();
+                }).start();*/
             }
         });
     }

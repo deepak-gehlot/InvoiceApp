@@ -3,7 +3,11 @@ package com.invoiceapp.android.view.activity.detailssection;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -20,12 +24,16 @@ import com.invoiceapp.android.dao.Response;
 import com.invoiceapp.android.databinding.ActivityDetailSectionMainBinding;
 import com.invoiceapp.android.listener.CallbackListener;
 import com.invoiceapp.android.util.PreferenceConnector;
+import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.view.activity.HomeActivity;
 import com.invoiceapp.android.view.fragment.detailsection.BusinessDetailsFragment;
 import com.invoiceapp.android.view.fragment.detailsection.BusinessFinalFragment;
 import com.invoiceapp.android.view.fragment.detailsection.BusinessIndustryFragment;
 import com.invoiceapp.android.view.fragment.detailsection.BusinessLogoFragment;
 import com.invoiceapp.android.view.model.BusinessDetailModel;
+
+import java.io.File;
+import java.io.IOException;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -97,17 +105,50 @@ public class DetailSectionMainActivity extends AppCompatActivity {
     }
 
     public void switchActivity() {
-        businessDetailModel.setUserID(PreferenceConnector.readString(DetailSectionMainActivity.this, PreferenceConnector.USER_ID, ""));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    businessDetailModel.setUserID(PreferenceConnector.readString(DetailSectionMainActivity.this, PreferenceConnector.USER_ID, ""));
+                    final String uri = businessDetailModel.getLogo();
+                    if (uri.isEmpty()) {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateDetailOnServer(uri);
+                            }
+                        });
+                    } else {
+                        File file = new File(uri);
+                        final Bitmap bitmap = Utility.handleSamplingAndRotationBitmap(DetailSectionMainActivity.this, Uri.fromFile(file));
+                        businessDetailModel.setLogo(Utility.encodeImage(bitmap));
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateDetailOnServer(uri);
+                            }
+                        });
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void updateDetailOnServer(final String uri) {
         final ProgressDialog progressDialog = ProgressDialog.show(DetailSectionMainActivity.this, "", "saving info...", true, true);
         final String jsonRequest = new Gson().toJson(businessDetailModel);
         QueryManager.getInstance().postRequest(DetailSectionMainActivity.this, jsonRequest, new CallbackListener() {
             @Override
             public void onResult(Exception e, String result) {
                 progressDialog.dismiss();
+                businessDetailModel.setLogo(uri);
                 if (result != null && !result.isEmpty()) {
                     try {
                         Response response = new Gson().fromJson(result, Response.class);
                         if (response.status.equals("200")) {
+                            String jsonRequest = new Gson().toJson(businessDetailModel);
                             PreferenceConnector.writeString(DetailSectionMainActivity.this, PreferenceConnector.BUSINESS_DETAILS, jsonRequest);
                             startActivity(new Intent(DetailSectionMainActivity.this, HomeActivity.class));
                             finish();

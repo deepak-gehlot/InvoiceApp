@@ -2,7 +2,11 @@ package com.invoiceapp.android.view.activity.businessdetails;
 
 import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -24,13 +28,16 @@ import com.invoiceapp.android.dao.Response;
 import com.invoiceapp.android.databinding.ActivityBusinessDetailsBinding;
 import com.invoiceapp.android.listener.CallbackListener;
 import com.invoiceapp.android.util.PreferenceConnector;
+import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.view.fragment.businessdetails.ContactFragment;
 import com.invoiceapp.android.view.fragment.businessdetails.GeneralDetailFragment;
 import com.invoiceapp.android.view.fragment.businessdetails.LogoFragment;
 import com.invoiceapp.android.view.model.BusinessDetailModel;
 
-import io.fabric.sdk.android.Fabric;
+import java.io.File;
+import java.io.IOException;
 
+import io.fabric.sdk.android.Fabric;
 
 public class BusinessDetailsActivity extends AppCompatActivity {
 
@@ -82,12 +89,52 @@ public class BusinessDetailsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        String json = new Gson().toJson(model);
         final ProgressDialog progressDialog = ProgressDialog.show(BusinessDetailsActivity.this, "", "", false, false);
-        PreferenceConnector.writeString(BusinessDetailsActivity.this, PreferenceConnector.BUSINESS_DETAILS, json);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final String uri = model.getLogo();
+                    if (uri.isEmpty() || uri.contains("http")) {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateDetailsOnServer(uri, progressDialog);
+                            }
+                        });
+                    } else {
+                        File file = new File(uri);
+                        final Bitmap bitmap = Utility.handleSamplingAndRotationBitmap(BusinessDetailsActivity.this, Uri.fromFile(file));
+                        model.setLogo(Utility.encodeImage(bitmap));
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateDetailsOnServer(uri, progressDialog);
+                            }
+                        });
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.dismiss();
+                            finish();
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+
+    private void updateDetailsOnServer(final String uri, final ProgressDialog progressDialog) {
+        String json = new Gson().toJson(model);
         QueryManager.getInstance().postRequest(BusinessDetailsActivity.this, json, new CallbackListener() {
             @Override
             public void onResult(Exception e, String result) {
+                model.setLogo(uri);
+                String json = new Gson().toJson(model);
+                PreferenceConnector.writeString(BusinessDetailsActivity.this, PreferenceConnector.BUSINESS_DETAILS, json);
                 progressDialog.dismiss();
                 if (e == null && result != null && !result.isEmpty()) {
                     try {

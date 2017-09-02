@@ -6,13 +6,10 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -27,11 +24,9 @@ import com.github.jksiezni.permissive.PermissionsRefusedListener;
 import com.github.jksiezni.permissive.Permissive;
 import com.invoiceapp.android.R;
 import com.invoiceapp.android.databinding.FragmentLogoBinding;
-import com.invoiceapp.android.util.Utility;
 import com.invoiceapp.android.view.model.BusinessDetailModel;
 
 import java.io.File;
-import java.io.IOException;
 
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
@@ -41,7 +36,6 @@ import pl.aprilapps.easyphotopicker.EasyImage;
  * A simple {@link Fragment} subclass.
  */
 public class LogoFragment extends Fragment {
-
 
     public LogoFragment() {
         // Required empty public constructor
@@ -79,10 +73,12 @@ public class LogoFragment extends Fragment {
 
         if (!model.getLogo().isEmpty()) {
             AQuery aQuery = new AQuery(getActivity());
-            if (model.getLogo().contains("http")) {
-                aQuery.id(binding.imageView).image(model.getLogo(), true, true, 200, R.drawable.ic_client);
+            if (model.getLogo().contains(".png")) {
+                aQuery.id(binding.imageView).image(model.getLogo(), true, true, 200, R.drawable.ic_client).progress(binding.progress);
             } else if (!model.getLogo().isEmpty()) {
-                aQuery.id(binding.imageView).image(Utility.decodeImage(model.getLogo()));
+                String uri = model.getLogo();
+                File file = new File(uri);
+                aQuery.id(binding.imageView).image(file, 300).progress(binding.progress);
             }
         }
     }
@@ -151,6 +147,8 @@ public class LogoFragment extends Fragment {
         }).execute(getActivity());
     }
 
+    AQuery aQuery = new AQuery(getActivity());
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -158,7 +156,10 @@ public class LogoFragment extends Fragment {
             @Override
             public void onImagePicked(final File imageFile, EasyImage.ImageSource source, int type) {
                 final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "", "loading image...", false, false);
-                new Thread(new Runnable() {
+                aQuery.id(binding.imageView).image(imageFile, 300).progress(binding.progress);
+                model.setLogo(Uri.fromFile(imageFile).getPath());
+                progressDialog.dismiss();
+              /*  new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
@@ -166,7 +167,6 @@ public class LogoFragment extends Fragment {
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    binding.imageView.setImageBitmap(bitmap);
                                     progressDialog.dismiss();
                                     new Thread(new Runnable() {
                                         @Override
@@ -186,7 +186,7 @@ public class LogoFragment extends Fragment {
                             });
                         }
                     }
-                }).start();
+                }).start();*/
             }
         });
     }

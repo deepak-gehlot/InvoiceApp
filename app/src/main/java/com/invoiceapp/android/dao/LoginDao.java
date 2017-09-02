@@ -30,6 +30,7 @@ public class LoginDao {
 		"address_3": "",
 		"business_industry": "",
 		"business_logo": ""*/
+        public String userID = "";
         public String id = "";
         public String email = "";
         public String businessName = "";

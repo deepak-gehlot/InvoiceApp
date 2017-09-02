@@ -70,13 +70,19 @@ public class RegisterFragment extends Fragment {
                         LoginDao loginDao = new Gson().fromJson(result, LoginDao.class);
                         if (loginDao.status.equals("200")) {
                             PreferenceConnector.writeBoolean(getActivity(), PreferenceConnector.IS_LOGIN, true);
-                            PreferenceConnector.writeString(getActivity(), PreferenceConnector.USER_ID, loginDao.result.get(0).id);
                             Utility.showToast(getActivity(), "Register successfully.");
-                            // showMessage("You have successfully Registered.\nPlease verify your email before Login.");
                             Intent intent = new Intent(getActivity(), GetStartedActivity.class);
-                            intent.putExtra("item", new BusinessDetailModel());
-                            startActivity(intent);
-                            getActivity().finish();
+                            if (loginDao.result != null && loginDao.result.size() != 0) {
+                                BusinessDetailModel businessDetailModel = new BusinessDetailModel();
+                                PreferenceConnector.writeString(getActivity(), PreferenceConnector.USER_ID, loginDao.result.get(0).id);
+                                businessDetailModel.setUserID(loginDao.result.get(0).userID);
+                                businessDetailModel.setEmail(loginDao.result.get(0).email);
+                                intent.putExtra("item", businessDetailModel);
+                                startActivity(intent);
+                                getActivity().finish();
+                            } else {
+
+                            }
                         } else {
                             if (loginDao.result != null && loginDao.result.size() != 0) {
                                 showMessage(loginDao.result.get(0).msg);
